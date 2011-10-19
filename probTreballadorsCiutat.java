@@ -1,6 +1,6 @@
 //package IA.probTreballadors;
 
-import java.util.Random;
+import java.util.*;
 import java.util.Queue;
 
 public class probTreballadorsCiutat {
@@ -81,10 +81,51 @@ public class probTreballadorsCiutat {
 	private int M; //Nombre de treballadors conductors.
 
 	private Cotxe [] cotxes;
-	private Treballador [] treballador;
+	private Treballador [] treballadors;
 	private int [] distanciaRecorrida;
 
 	private static int maxTrabajadoresCoche = 2;
 	private static int maximaDistanciaConductor = 3000;
+	
 
+	public probTreballadorsCiutat(){
+		N = 10;
+		M = 2;
+
+		Date date = new Date();
+		long time = date.getTime();
+
+		Random rnd = new Random(time);
+
+		int n_conductors = 0;
+		treballadors = new Treballador[N];
+		for (int i=0; i<N; i++){ 
+			int x_ori = rnd.nextInt(100);
+			int y_ori = rnd.nextInt(100);
+			Posicio origen = new Posicio (x_ori,y_ori);
+
+			int x_desti = rnd.nextInt(100);
+			int y_desti = rnd.nextInt(100);
+			Posicio desti = new Posicio (x_desti,y_desti);
+
+			Treballador t = new Treballador(origen,desti);
+
+			treballadors[i] = t;
+
+
+			if (n_conductors < M && rnd.nextBoolean()){
+				treballadors[i].conductor = true;
+				n_conductors++;
+			}
+			System.out.println("=========Treballador " + i+ " ========");
+			System.out.println("origen amb x: " + x_ori + " y: " + y_ori);
+			System.out.println("desti amb x: " + x_desti + " y: " + y_desti);
+			if (treballadors[i].conductor){
+				System.out.println("SOC CONDUCTOR FUCK YEAHH!");
+			}
+			System.out.println("======================================");
+		}
+
+	}
 }
+
