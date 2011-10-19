@@ -90,7 +90,7 @@ public class probTreballadorsCiutat {
 
 	public probTreballadorsCiutat(){
 		N = 10;
-		M = 2;
+		M = 8;
 
 		Date date = new Date();
 		long time = date.getTime();
@@ -113,7 +113,7 @@ public class probTreballadorsCiutat {
 			treballadors[i] = t;
 
 
-			if (n_conductors < M && rnd.nextBoolean()){
+			if (n_conductors < N-M && rnd.nextBoolean()){
 				treballadors[i].conductor = true;
 				n_conductors++;
 			}
