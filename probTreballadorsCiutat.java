@@ -161,5 +161,9 @@ public class probTreballadorsCiutat {
 		
 		return distanciaPrimer + distanciaAcompanyants + distanciaUltim;
 	}
+	void recalcularDistanciesCotxes(){
+		for (int i=0;i<N-M ;i++) distanciaRecorrida[i] = distanciaRecorregutCotxe(cotxes[i]);
+	}
+
 }
 
