@@ -98,7 +98,10 @@ public class probTreballadorsCiutat {
 		Random rnd = new Random(time);
 
 		int n_conductors = 0;
+
 		treballadors = new Treballador[N];
+		cotxes = new Coche[N-M];
+		distanciaRecorrida = new int[N-M];
 
 		for (int i=0; i<N; i++){ 
 			int x_ori = rnd.nextInt(100);
