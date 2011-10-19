@@ -85,7 +85,7 @@ public class probTreballadorsCiutat {
 	private int [] distanciaRecorrida;
 
 	private static int maxTrabajadoresCoche = 2;
-	private static int maximaDistanciaConductor = 3000;
+	private static int maximaDistanciaConductor = 300;
 	
 
 	public probTreballadorsCiutat(){
@@ -99,6 +99,7 @@ public class probTreballadorsCiutat {
 
 		int n_conductors = 0;
 		treballadors = new Treballador[N];
+
 		for (int i=0; i<N; i++){ 
 			int x_ori = rnd.nextInt(100);
 			int y_ori = rnd.nextInt(100);
@@ -117,15 +118,48 @@ public class probTreballadorsCiutat {
 				treballadors[i].conductor = true;
 				n_conductors++;
 			}
+
+			/* Prints dels resultats aleatoris */
 			System.out.println("=========Treballador " + i+ " ========");
 			System.out.println("origen amb x: " + x_ori + " y: " + y_ori);
 			System.out.println("desti amb x: " + x_desti + " y: " + y_desti);
+
 			if (treballadors[i].conductor){
 				System.out.println("SOC CONDUCTOR FUCK YEAHH!");
 			}
+
 			System.out.println("======================================");
+
+			System.out.println("===========Distancia camí=============");
+
+			System.out.println(distancia_recorregut(treballadors[i]));
 		}
 
+	}
+
+
+	/*
+	 Funcions utils que ens faran falta
+	 */
+
+	int abs (int x){
+		if (x<0) return -x;
+		else return x;
+	}
+
+	int distancia_recorregut(Treballador t){
+		return abs(t.desti.x - t.origen.x) + abs(t.desti.y - t.origen.y);
+	}
+
+	int distancia_recorregut_cotxe(Cotxe c){
+
+		int distanciaPrimer = 0;
+		int distanciaAcompanyants = 0;
+		int distanciaUltim = 0;
+
+		/*Depenem de com montem l'estructura dels acompanyants*/
+		
+		return distanciaPrimer + distanciaAcompanyants + distanciaUltim;
 	}
 }
 
