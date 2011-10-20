@@ -159,7 +159,7 @@ public class probTreballadorsCiutat {
 	int distancia_dos_punts(Posicio a, Posicio b){
 		return abs(a.getX()-b.getX()) + abs(a.getY()-b.getY());
 	}
-	int distancia_recorregut_cotxe(Cotxe c){
+	int distanciaRecorregutCotxe(Cotxe c){
 
 		int distanciaPrimer = 0;
 		int distanciaAcompanyants = 0;
@@ -196,12 +196,12 @@ public class probTreballadorsCiutat {
 			}
 
 			if (sortida){
-				distanciaAcompanyants += distancia_dos_punts(c.ordre[i].desti,anterior); 
-				anterior = c.ordre[i].desti;
+				distanciaAcompanyants += distancia_dos_punts(treballadors[c.ordre[i]].desti,anterior); 
+				anterior = treballadors[c.ordre[i]].desti;
 			}
 			else{
-				distanciaAcompanyants += distancia_dos_punts(c.ordre[i].origen,anterior); 
-				anterior = c.ordre[i].origen;
+				distanciaAcompanyants += distancia_dos_punts(treballadors[c.ordre[i]].origen,anterior); 
+				anterior = treballadors[c.ordre[i]].origen;
 			}
 		}
 		
