@@ -8,7 +8,7 @@ public class probTreballadorsCiutat {
 	public class Treballador{
 		boolean conductor;
 		Posicio origen, desti;
-		int cotxe;
+		public int cotxe;
 
 		int ie,is;
 
@@ -62,7 +62,7 @@ public class probTreballadorsCiutat {
 
 	public class Cotxe{
 		Treballador conductor;
-		int id
+		int id;
 		int ordre[];
 		int size;
 
@@ -72,8 +72,8 @@ public class probTreballadorsCiutat {
 			size=0;
 		}
 
-		public Cotxe (Treballador c, int c){
-			conductor = c;
+		public Cotxe (Treballador t, int c){
+			conductor = t;
 			ordre = new int[M];
 			id=c;
 			size=0;
@@ -82,7 +82,7 @@ public class probTreballadorsCiutat {
 		/*x es l'id del treballador al array de treballadors*/
 		public void afegirAcompanyant(int x){
 			ordre[size]=x;
-			ordres[size+1]=x;
+			ordre[size+1]=x;
 
 			treballadors[x].ie = size;
 			treballadors[x].is = size+1;
@@ -157,18 +157,20 @@ public class probTreballadorsCiutat {
 	/*
 		Operadors i funcions de transformacio	
 	 */
-	public boolean avansar_sortida(int t){
-		if( t.is == 0 ) return false;
+	public boolean avansar_sortida(int i){
+		Treballador t = treballadors[i];
 		if( t.is == t.ie+1 ) return false;
+		if( t.is == 0 ) return false;
 
-		swap_cua(cotxes[treballadors[t].cotxe].ordre, t.is, t.is-1);
+		swap_cua(t.cotxe, t.is, t.is-1);
 		return true;
 	}
 
 	public boolean avansar_entrada( int i ){
-		if( t.ie == 0 ) return false;
+		Treballador t = treballadors[i];
 
-		swap_cua(cotxes[treballadors[t].cotxe].ordre, t.is, t.is-1);
+		if( t.ie == 0 ) return false;
+		swap_cua(t.cotxe, t.is, t.is-1);
 		return true;
 	}
 
@@ -199,8 +201,8 @@ public class probTreballadorsCiutat {
 
 	void swap_cua( int c, int index1, int index2 ) {
 		int aux = cotxes[c].ordre[index1];
-		cotxes[c].ordre[t.index1] = cotxes[c].ordre[t.index2];
-		cotxes[c].ordre[t.index2] = aux;
+		cotxes[c].ordre[index1] = cotxes[c].ordre[index2];
+		cotxes[c].ordre[index2] = aux;
 
 		aux = treballadors[index1].ie;
 		int aux2 = treballadors[index1].is;
@@ -273,8 +275,6 @@ public class probTreballadorsCiutat {
 	void recalcularDistanciesCotxes(){
 		for (int i=0;i<N-M ;i++) distanciaRecorrida[i] = distanciaRecorregutCotxe(cotxes[i]);
 	}	
-	void 
-
 	
 }
 
