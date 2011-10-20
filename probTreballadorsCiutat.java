@@ -8,6 +8,9 @@ public class probTreballadorsCiutat {
 	public class Treballador{
 		boolean conductor;
 		Posicio origen, desti;
+		int cotxe;
+
+		int ie,is;
 
 		public Treballador(Posicio origen, Posicio desti){
 			conductor = false;
@@ -59,7 +62,7 @@ public class probTreballadorsCiutat {
 
 	public class Cotxe{
 		Treballador conductor;
-		Queue ordre;
+		int ordre[];
 
 		public Cotxe (Treballador c){
 			conductor = c;
@@ -67,7 +70,7 @@ public class probTreballadorsCiutat {
 
 		/*x es l'id del treballador al array de treballadors*/
 		public void afegirAcompanyant(int x){
-			ordre.add(x);
+
 		}
 		public void prioritzarEntrada(int x){
 			/*Realment necessitem una cua? Amb les cues de java natives no podem avançar elements.*/
@@ -98,7 +101,10 @@ public class probTreballadorsCiutat {
 		Random rnd = new Random(time);
 
 		int n_conductors = 0;
+
 		treballadors = new Treballador[N];
+		cotxes = new Cotxe[N-M];
+		distanciaRecorrida = new int[N-M];
 
 		for (int i=0; i<N; i++){ 
 			int x_ori = rnd.nextInt(100);
@@ -112,7 +118,6 @@ public class probTreballadorsCiutat {
 			Treballador t = new Treballador(origen,desti);
 
 			treballadors[i] = t;
-
 
 			if (n_conductors < N-M && rnd.nextBoolean()){
 				treballadors[i].conductor = true;
@@ -151,6 +156,9 @@ public class probTreballadorsCiutat {
 		return abs(t.desti.x - t.origen.x) + abs(t.desti.y - t.origen.y);
 	}
 
+	int distancia_dos_punts(Posicio a, Posicio b){
+		return abs(a.getX()-b.getX()) + abs(a.getY()-b.getY());
+	}
 	int distancia_recorregut_cotxe(Cotxe c){
 
 		int distanciaPrimer = 0;
@@ -158,8 +166,52 @@ public class probTreballadorsCiutat {
 		int distanciaUltim = 0;
 
 		/*Depenem de com montem l'estructura dels acompanyants*/
+
+		distanciaPrimer = distancia_dos_punts(c.conductor.origen,treballadors[c.ordre[0]].origen);
+		distanciaUltim = distancia_dos_punts(treballadors[c.ordre[2*M-1]].desti,c.conductor.desti);
+
+		int a=0;
+		int b=0;
+		boolean sortida = false;
+
+		Posicio anterior = treballadors[c.ordre[0]].origen;
+
+		for (int i=1;i<2*M;i++){
+
+			if (c.ordre[i] == a){
+				a = 0;
+				sortida = true;
+			}
+			else if	(c.ordre[i] == b){
+				b = 0;
+				sortida = true;
+			}
+			else if (a == 0){
+				a = i;
+				sortida = false;
+			}
+			else if (b == 0){
+				b = i;
+				sortida = false;
+			}
+
+			if (sortida){
+				distanciaAcompanyants += distancia_dos_punts(c.ordre[i].desti,anterior); 
+				anterior = c.ordre[i].desti;
+			}
+			else{
+				distanciaAcompanyants += distancia_dos_punts(c.ordre[i].origen,anterior); 
+				anterior = c.ordre[i].origen;
+			}
+		}
 		
 		return distanciaPrimer + distanciaAcompanyants + distanciaUltim;
 	}
+	void recalcularDistanciesCotxes(){
+		for (int i=0;i<N-M ;i++) distanciaRecorrida[i] = distanciaRecorregutCotxe(cotxes[i]);
+	}	
+
+
+	
 }
 
