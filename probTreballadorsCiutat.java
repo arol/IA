@@ -105,7 +105,7 @@ public class probTreballadorsCiutat {
 
 	public probTreballadorsCiutat(){
 		N = 10;
-		M = 8;
+		M = 7;
 
 		Date date = new Date();
 		long time = date.getTime();
@@ -134,18 +134,25 @@ public class probTreballadorsCiutat {
 
 			if (n_conductors < N-M && rnd.nextBoolean()){
 				treballadors[i].conductor = true;
-				Cotxe c = new Cotxe(i, n_cotxes);
+				Cotxe c = new Cotxe(t, n_cotxes);
 				treballadors[i].cotxe = n_cotxes;
+				cotxes[n_cotxes] = c;
 				n_cotxes++;
 				n_conductors++;
 			}
+		}
+		
+		solucioInicial();
+
+		for (int i=0; i<N; i++){ 
+			Treballador t = treballadors[i];
 
 			/* Prints dels resultats aleatoris */
 			System.out.println("=========Treballador " + i+ " ========");
-			System.out.println("origen amb x: " + x_ori + " y: " + y_ori);
-			System.out.println("desti amb x: " + x_desti + " y: " + y_desti);
+			System.out.println("origen amb x: " + t.origen.x + " y: " + t.origen.y);
+			System.out.println("desti amb x: " + t.desti.x + " y: " + t.desti.y);
 
-			if (treballadors[i].conductor){
+			if (t.conductor){
 				System.out.println("SOC CONDUCTOR FUCK YEAHH!");
 			}
 
@@ -153,9 +160,49 @@ public class probTreballadorsCiutat {
 
 			System.out.println("===========Distancia camí=============");
 
-			System.out.println(distancia_recorregut(treballadors[i]));
+			System.out.println(distancia_recorregut(t));
 		}
 
+		for(int i = 0; i < N-M; i++ ){
+			//obj.getClass().isInstance(Statement.class);
+			
+			Cotxe c = cotxes[i];
+			System.out.println("Cotxe numero " + i );
+			for( int j=0; j<c.size; j++ ){
+				System.out.print(c.ordre[j]+" ");	
+			}
+			System.out.println("eol");
+		}
+
+	}
+
+	private void solucioInicial(){
+		int i; //Acompanyants colocats
+		int j; //Iterador de treballadors
+		int c; //Iterador de cotxes modular a N-M
+		boolean trobat;
+
+		j = 0;
+		c = 0;
+		for( i = 0; i < M; ){
+			trobat = false;
+			while ( !trobat ){
+				//busquem un acompanyant
+				
+				//System.out.println("Mirant treballador " + j);
+
+				if(!treballadors[j].conductor){
+					//System.out.println("No es conductor");
+					//System.out.println("Va al conductor " + c);
+					cotxes[c].afegirAcompanyant(j);
+
+					trobat = true; //Sortim del while
+					i++; //Ja hem col.locat un mes
+					c = (c+1) % (N-M); //fem un bucle a modul N-M repartint al maxim els acompanyants
+				}
+				j++;
+			}
+		}
 	}
 
 	/*
