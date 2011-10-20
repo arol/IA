@@ -113,6 +113,7 @@ public class probTreballadorsCiutat {
 		Random rnd = new Random(time);
 
 		int n_conductors = 0;
+		int n_cotxes = 0;
 
 		treballadors = new Treballador[N];
 		cotxes = new Cotxe[N-M];
@@ -133,6 +134,9 @@ public class probTreballadorsCiutat {
 
 			if (n_conductors < N-M && rnd.nextBoolean()){
 				treballadors[i].conductor = true;
+				Cotxe c = new Cotxe(i, n_cotxes);
+				treballadors[i].cotxe = n_cotxes;
+				n_cotxes++;
 				n_conductors++;
 			}
 
