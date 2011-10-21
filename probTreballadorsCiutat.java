@@ -74,7 +74,7 @@ public class probTreballadorsCiutat {
 
 		public Cotxe (Treballador t, int c){
 			conductor = t;
-			ordre = new int[M];
+			ordre = new int[2*M];
 			id=c;
 			size=0;
 		}
@@ -89,6 +89,28 @@ public class probTreballadorsCiutat {
 			treballadors[x].cotxe = id;
 
 			size+=2;
+		}
+
+		public void eliminarAcompanyant(int i){
+			Treballador t = treballadors[i];
+			
+			int count = 0;
+			size-=2;
+			for(int j=0; j < size; j++){
+				if(count!=2 && ordre[j] == i){
+					count++;
+				}
+				
+				if ( count == 1 ) {
+					ordre[j] = ordre[j+1];
+					if(ordre[j] == i){
+						count++;
+						ordre[j] = ordre[j+2];
+					}
+				}else if ( count == 2 ){
+					ordre[j] = ordre[j+2];
+				}
+			}
 		}
 	}
 
@@ -174,6 +196,18 @@ public class probTreballadorsCiutat {
 			System.out.println("eol");
 		}
 
+		canviar_de_cotxe(2, 0);
+
+		for(int i = 0; i < N-M; i++ ){
+			//obj.getClass().isInstance(Statement.class);
+			
+			Cotxe c = cotxes[i];
+			System.out.println("Cotxe numero " + i );
+			for( int j=0; j<c.size; j++ ){
+				System.out.print(c.ordre[j]+" ");	
+			}
+			System.out.println("eol");
+		}
 	}
 
 	private void solucioInicial(){
@@ -235,6 +269,10 @@ public class probTreballadorsCiutat {
 		cotxes[c2].ordre = aux;
 
 		int i;
+		i = cotxes[c1].size;
+		cotxes[c1].size = cotxes[c2].size;
+		cotxes[c2].size = i;
+
 		for( i = 0; i < N && treballadors[i].conductor; i++ ) { 
 			if ( treballadors[i].cotxe == c1 ){
 				treballadors[i].cotxe = c2;
@@ -242,6 +280,20 @@ public class probTreballadorsCiutat {
 				treballadors[i].cotxe = c1;
 			}
 		}
+		return true;
+	}
+
+	public boolean canviar_de_cotxe( int i, int c){
+		Treballador t = treballadors[i];
+		if( t.cotxe == c ) return false;
+
+		Cotxe cotxe = cotxes[c];
+		if( cotxe.size >= 2*M ) return false; //cas no possible, pero comprobat
+
+		Cotxe cotxe_actual = cotxes[t.cotxe];
+		cotxe_actual.eliminarAcompanyant(i);
+		cotxe.afegirAcompanyant(i);
+
 		return true;
 	}
 
