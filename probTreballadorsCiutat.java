@@ -8,7 +8,7 @@ public class probTreballadorsCiutat {
 	public class Treballador{
 		boolean conductor;
 		Posicio origen, desti;
-		int cotxe;
+		public int cotxe;
 
 		int ie,is;
 
@@ -62,21 +62,33 @@ public class probTreballadorsCiutat {
 
 	public class Cotxe{
 		Treballador conductor;
+		int id;
 		int ordre[];
+		int size;
 
 		public Cotxe (Treballador c){
 			conductor = c;
+			ordre = new int[2*M];
+			size=0;
+		}
+
+		public Cotxe (Treballador t, int c){
+			conductor = t;
+			ordre = new int[M];
+			id=c;
+			size=0;
 		}
 
 		/*x es l'id del treballador al array de treballadors*/
 		public void afegirAcompanyant(int x){
+			ordre[size]=x;
+			ordre[size+1]=x;
 
-		}
-		public void prioritzarEntrada(int x){
-			/*Realment necessitem una cua? Amb les cues de java natives no podem avançar elements.*/
-		}
-		public void prioritzarSortida(int x){
-			/*Realment necessitem una cua? Amb les cues de java natives no podem avançar elements.*/
+			treballadors[x].ie = size;
+			treballadors[x].is = size+1;
+			treballadors[x].cotxe = id;
+
+			size+=2;
 		}
 	}
 
@@ -93,7 +105,7 @@ public class probTreballadorsCiutat {
 
 	public probTreballadorsCiutat(){
 		N = 10;
-		M = 8;
+		M = 7;
 
 		Date date = new Date();
 		long time = date.getTime();
@@ -101,6 +113,7 @@ public class probTreballadorsCiutat {
 		Random rnd = new Random(time);
 
 		int n_conductors = 0;
+		int n_cotxes = 0;
 
 		treballadors = new Treballador[N];
 		cotxes = new Cotxe[N-M];
@@ -121,15 +134,25 @@ public class probTreballadorsCiutat {
 
 			if (n_conductors < N-M && rnd.nextBoolean()){
 				treballadors[i].conductor = true;
+				Cotxe c = new Cotxe(t, n_cotxes);
+				treballadors[i].cotxe = n_cotxes;
+				cotxes[n_cotxes] = c;
+				n_cotxes++;
 				n_conductors++;
 			}
+		}
+		
+		solucioInicial();
+
+		for (int i=0; i<N; i++){ 
+			Treballador t = treballadors[i];
 
 			/* Prints dels resultats aleatoris */
 			System.out.println("=========Treballador " + i+ " ========");
-			System.out.println("origen amb x: " + x_ori + " y: " + y_ori);
-			System.out.println("desti amb x: " + x_desti + " y: " + y_desti);
+			System.out.println("origen amb x: " + t.origen.x + " y: " + t.origen.y);
+			System.out.println("desti amb x: " + t.desti.x + " y: " + t.desti.y);
 
-			if (treballadors[i].conductor){
+			if (t.conductor){
 				System.out.println("SOC CONDUCTOR FUCK YEAHH!");
 			}
 
@@ -137,15 +160,108 @@ public class probTreballadorsCiutat {
 
 			System.out.println("===========Distancia camí=============");
 
-			System.out.println(distancia_recorregut(treballadors[i]));
+			System.out.println(distancia_recorregut(t));
 		}
 
+		for(int i = 0; i < N-M; i++ ){
+			//obj.getClass().isInstance(Statement.class);
+			
+			Cotxe c = cotxes[i];
+			System.out.println("Cotxe numero " + i );
+			for( int j=0; j<c.size; j++ ){
+				System.out.print(c.ordre[j]+" ");	
+			}
+			System.out.println("eol");
+		}
+
+	}
+
+	private void solucioInicial(){
+		int i; //Acompanyants colocats
+		int j; //Iterador de treballadors
+		int c; //Iterador de cotxes modular a N-M
+		boolean trobat;
+
+		j = 0;
+		c = 0;
+		for( i = 0; i < M; ){
+			trobat = false;
+			while ( !trobat ){
+				//busquem un acompanyant
+				
+				//System.out.println("Mirant treballador " + j);
+
+				if(!treballadors[j].conductor){
+					//System.out.println("No es conductor");
+					//System.out.println("Va al conductor " + c);
+					cotxes[c].afegirAcompanyant(j);
+
+					trobat = true; //Sortim del while
+					i++; //Ja hem col.locat un mes
+					c = (c+1) % (N-M); //fem un bucle a modul N-M repartint al maxim els acompanyants
+				}
+				j++;
+			}
+		}
+	}
+
+	/*
+		Operadors i funcions de transformacio	
+	 */
+	public boolean avansar_sortida(int i){
+		Treballador t = treballadors[i];
+		if( t.is == t.ie+1 ) return false;
+		if( t.is == 0 ) return false;
+
+		swap_cua(t.cotxe, t.is, t.is-1);
+		return true;
+	}
+
+	public boolean avansar_entrada( int i ){
+		Treballador t = treballadors[i];
+
+		if( t.ie == 0 ) return false;
+		swap_cua(t.cotxe, t.is, t.is-1);
+		return true;
+	}
+
+	public boolean canviar_conductor( int c1, int c2 ){
+		int[] aux;
+		aux = new int[2*M];
+
+		aux =  cotxes[c1].ordre;
+
+		cotxes[c1].ordre = cotxes[c2].ordre;
+		cotxes[c2].ordre = aux;
+
+		int i;
+		for( i = 0; i < N && treballadors[i].conductor; i++ ) { 
+			if ( treballadors[i].cotxe == c1 ){
+				treballadors[i].cotxe = c2;
+			}else if ( treballadors[i].cotxe == c2 ){
+				treballadors[i].cotxe = c1;
+			}
+		}
+		return true;
 	}
 
 
 	/*
 	 Funcions utils que ens faran falta
 	 */
+
+	void swap_cua( int c, int index1, int index2 ) {
+		int aux = cotxes[c].ordre[index1];
+		cotxes[c].ordre[index1] = cotxes[c].ordre[index2];
+		cotxes[c].ordre[index2] = aux;
+
+		aux = treballadors[index1].ie;
+		int aux2 = treballadors[index1].is;
+		treballadors[index1].ie = treballadors[index2].ie;
+		treballadors[index1].is = treballadors[index2].is;	
+		treballadors[index1].ie = aux;
+		treballadors[index1].is = aux2;
+	}
 
 	int abs (int x){
 		if (x<0) return -x;
@@ -210,8 +326,6 @@ public class probTreballadorsCiutat {
 	void recalcularDistanciesCotxes(){
 		for (int i=0;i<N-M ;i++) distanciaRecorrida[i] = distanciaRecorregutCotxe(cotxes[i]);
 	}	
-
-
 	
 }
 
