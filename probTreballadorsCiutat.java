@@ -142,7 +142,9 @@ public class probTreballadorsCiutat {
 		cotxes = new Cotxe[N-M];
 		distanciaRecorrida = new int[N-M];
 
-		for (int i=0; i<N; i++){ 
+		int i;
+
+		for (i=0; i<N; i++){ 
 			int x_ori = rnd.nextInt(100);
 			int y_ori = rnd.nextInt(100);
 			Posicio origen = new Posicio (x_ori,y_ori);
@@ -155,21 +157,30 @@ public class probTreballadorsCiutat {
 
 			treballadors[i] = t;
 
-			if (n_conductors < N-M && rnd.nextBoolean()){
+		}
+		i = 0;
+		while (n_conductors<N-M){
+			if (i == N) i = 0;
+			if (rnd.nextBoolean()){
 				treballadors[i].conductor = true;
-				Cotxe c = new Cotxe(t, n_cotxes);
+				Cotxe c = new Cotxe(treballadors[i], n_cotxes);
 				c.idConductor = i;
 				treballadors[i].cotxe = n_cotxes;
 				cotxes[n_cotxes] = c;
 				n_cotxes++;
 				n_conductors++;
 			}
+			i++;
 		}
-		
+	
 		solucioInicial();
 		recalcularDistanciesCotxes();
 
-		for (int i=0; i<N; i++){ 
+		if (esSolucioValida()) System.out.println("Es solucio valida");
+		else System.out.println("No es solucio valida");
+
+
+		for (i=0; i<N; i++){ 
 			Treballador t = treballadors[i];
 
 			/* Prints dels resultats aleatoris */
@@ -188,7 +199,7 @@ public class probTreballadorsCiutat {
 			System.out.println(distancia_recorregut(t));
 		}
 
-		for(int i = 0; i < N-M; i++ ){
+		for(i = 0; i < N-M; i++ ){
 			//obj.getClass().isInstance(Statement.class);
 			
 			Cotxe c = cotxes[i];
@@ -205,7 +216,7 @@ public class probTreballadorsCiutat {
 
 		canviar_de_cotxe(2, 0);
 
-		for(int i = 0; i < N-M; i++ ){
+		for(i = 0; i < N-M; i++ ){
 			//obj.getClass().isInstance(Statement.class);
 			
 			Cotxe c = cotxes[i];
@@ -230,11 +241,11 @@ public class probTreballadorsCiutat {
 			while ( !trobat ){
 				//busquem un acompanyant
 				
-				//System.out.println("Mirant treballador " + j);
+				System.out.println("Mirant treballador " + j);
 
 				if(!treballadors[j].conductor){
-					//System.out.println("No es conductor");
-					//System.out.println("Va al conductor " + c);
+					System.out.println("No es conductor");
+					System.out.println("Va al conductor " + c);
 					cotxes[c].afegirAcompanyant(j);
 
 					trobat = true; //Sortim del while
@@ -391,9 +402,21 @@ public class probTreballadorsCiutat {
 		
 		return distanciaPrimer + distanciaAcompanyants + distanciaUltim;
 	}
+
 	void recalcularDistanciesCotxes(){
 		for (int i=0;i<N-M ;i++) distanciaRecorrida[i] = distanciaRecorregutCotxe(cotxes[i]);
 	}	
-	
+
+	boolean esSolucioValida(){
+		
+		for (int i=0;i<N-M;i++){
+			if (distanciaRecorrida[i] > maximaDistanciaConductor){
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 }
 
