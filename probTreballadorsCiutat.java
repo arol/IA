@@ -65,6 +65,7 @@ public class probTreballadorsCiutat {
 		int id;
 		int ordre[];
 		int size;
+		int idConductor;
 
 		public Cotxe (Treballador c){
 			conductor = c;
@@ -141,7 +142,9 @@ public class probTreballadorsCiutat {
 		cotxes = new Cotxe[N-M];
 		distanciaRecorrida = new int[N-M];
 
-		for (int i=0; i<N; i++){ 
+		int i;
+
+		for (i=0; i<N; i++){ 
 			int x_ori = rnd.nextInt(100);
 			int y_ori = rnd.nextInt(100);
 			Posicio origen = new Posicio (x_ori,y_ori);
@@ -154,19 +157,30 @@ public class probTreballadorsCiutat {
 
 			treballadors[i] = t;
 
-			if (n_conductors < N-M && rnd.nextBoolean()){
+		}
+		i = 0;
+		while (n_conductors<N-M){
+			if (i == N) i = 0;
+			if (rnd.nextBoolean()){
 				treballadors[i].conductor = true;
-				Cotxe c = new Cotxe(t, n_cotxes);
+				Cotxe c = new Cotxe(treballadors[i], n_cotxes);
+				c.idConductor = i;
 				treballadors[i].cotxe = n_cotxes;
 				cotxes[n_cotxes] = c;
 				n_cotxes++;
 				n_conductors++;
 			}
+			i++;
 		}
-		
+	
 		solucioInicial();
+		recalcularDistanciesCotxes();
 
-		for (int i=0; i<N; i++){ 
+		if (esSolucioValida()) System.out.println("Es solucio valida");
+		else System.out.println("No es solucio valida");
+
+
+		for (i=0; i<N; i++){ 
 			Treballador t = treballadors[i];
 
 			/* Prints dels resultats aleatoris */
@@ -185,20 +199,24 @@ public class probTreballadorsCiutat {
 			System.out.println(distancia_recorregut(t));
 		}
 
-		for(int i = 0; i < N-M; i++ ){
+		for(i = 0; i < N-M; i++ ){
 			//obj.getClass().isInstance(Statement.class);
 			
 			Cotxe c = cotxes[i];
 			System.out.println("Cotxe numero " + i );
+			System.out.println("Conductor del cotxe" + c.idConductor);
 			for( int j=0; j<c.size; j++ ){
 				System.out.print(c.ordre[j]+" ");	
 			}
 			System.out.println("eol");
+
+			System.out.println("Distancia recorreguda cotxe "+ i);
+			System.out.println(distanciaRecorrida[i]);
 		}
 
 		canviar_de_cotxe(2, 0);
 
-		for(int i = 0; i < N-M; i++ ){
+		for(i = 0; i < N-M; i++ ){
 			//obj.getClass().isInstance(Statement.class);
 			
 			Cotxe c = cotxes[i];
@@ -223,11 +241,11 @@ public class probTreballadorsCiutat {
 			while ( !trobat ){
 				//busquem un acompanyant
 				
-				//System.out.println("Mirant treballador " + j);
+				System.out.println("Mirant treballador " + j);
 
 				if(!treballadors[j].conductor){
-					//System.out.println("No es conductor");
-					//System.out.println("Va al conductor " + c);
+					System.out.println("No es conductor");
+					System.out.println("Va al conductor " + c);
 					cotxes[c].afegirAcompanyant(j);
 
 					trobat = true; //Sortim del while
@@ -336,7 +354,10 @@ public class probTreballadorsCiutat {
 		/*Depenem de com montem l'estructura dels acompanyants*/
 
 		distanciaPrimer = distancia_dos_punts(c.conductor.origen,treballadors[c.ordre[0]].origen);
-		distanciaUltim = distancia_dos_punts(treballadors[c.ordre[2*M-1]].desti,c.conductor.desti);
+		distanciaUltim = distancia_dos_punts(treballadors[c.ordre[c.size-1]].desti,c.conductor.desti);
+
+		System.out.println("distancia primer: " + distanciaPrimer);
+		System.out.println("distancia ultim: " + distanciaUltim);
 
 		int a=0;
 		int b=0;
@@ -344,7 +365,7 @@ public class probTreballadorsCiutat {
 
 		Posicio anterior = treballadors[c.ordre[0]].origen;
 
-		for (int i=1;i<2*M;i++){
+		for (int i=0;i<c.size;i++){
 
 			if (c.ordre[i] == a){
 				a = 0;
@@ -355,29 +376,47 @@ public class probTreballadorsCiutat {
 				sortida = true;
 			}
 			else if (a == 0){
-				a = i;
+				a = c.ordre[i];
 				sortida = false;
 			}
 			else if (b == 0){
-				b = i;
+				b = c.ordre[i];
 				sortida = false;
 			}
 
+			int distanciaActual = distanciaAcompanyants;
+
+			Posicio actual;
+
 			if (sortida){
-				distanciaAcompanyants += distancia_dos_punts(treballadors[c.ordre[i]].desti,anterior); 
-				anterior = treballadors[c.ordre[i]].desti;
+				actual = treballadors[c.ordre[i]].desti;
 			}
 			else{
-				distanciaAcompanyants += distancia_dos_punts(treballadors[c.ordre[i]].origen,anterior); 
-				anterior = treballadors[c.ordre[i]].origen;
+				actual = treballadors[c.ordre[i]].origen;
 			}
+
+			distanciaAcompanyants += distancia_dos_punts(actual,anterior); 
+
+			anterior = actual;
 		}
 		
 		return distanciaPrimer + distanciaAcompanyants + distanciaUltim;
 	}
+
 	void recalcularDistanciesCotxes(){
 		for (int i=0;i<N-M ;i++) distanciaRecorrida[i] = distanciaRecorregutCotxe(cotxes[i]);
 	}	
-	
+
+	boolean esSolucioValida(){
+		
+		for (int i=0;i<N-M;i++){
+			if (distanciaRecorrida[i] > maximaDistanciaConductor){
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 }
 
