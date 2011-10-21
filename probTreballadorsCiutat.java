@@ -214,8 +214,17 @@ public class probTreballadorsCiutat {
 			System.out.println(distanciaRecorrida[i]);
 		}
 
-		canviar_de_cotxe(2, 0);
-
+		//canviar_de_cotxe(2, 0);
+		System.out.println("Avancem el numero 8!");
+		avansar_entrada(9);
+		avansar_sortida(9);
+		avansar_entrada(9);
+		avansar_sortida(9);
+		avansar_entrada(9);
+		avansar_sortida(9);
+		avansar_entrada(9);
+		avansar_sortida(9);
+		
 		for(i = 0; i < N-M; i++ ){
 			//obj.getClass().isInstance(Statement.class);
 			
@@ -264,16 +273,48 @@ public class probTreballadorsCiutat {
 		Treballador t = treballadors[i];
 		if( t.is == t.ie+1 ) return false;
 		if( t.is == 0 ) return false;
-
+	
+		Treballador t2 = treballadors[cotxes[t.cotxe].ordre[t.is-1]];
 		swap_cua(t.cotxe, t.is, t.is-1);
+
+		//Canviem les seves posicion de sortida
+		int aux;
+		if(t2.ie == t.is-1){
+			aux = t2.ie;
+			t2.ie = t.is;
+			t.is = aux;
+		}else if(t2.is == t.is-1){
+			aux = t2.is;
+			t2.is = t.is;
+			t.is = aux;
+		}
 		return true;
 	}
 
 	public boolean avansar_entrada( int i ){
+		//System.out.println("---->");
 		Treballador t = treballadors[i];
 
+		//System.out.println("    Avansant numero " + i + " amb ie:" + t.ie + " i is:" + t.is);	
 		if( t.ie == 0 ) return false;
-		swap_cua(t.cotxe, t.is, t.is-1);
+	
+		Treballador t2 = treballadors[cotxes[t.cotxe].ordre[t.ie-1]];
+		swap_cua(t.cotxe, t.ie, t.ie-1);
+
+		//Canviem les seves posicions d'entradai
+		int aux;
+		if(t2.ie == t.ie-1){
+			aux = t2.ie;
+			t2.ie = t.ie;
+			t.ie = aux;
+		}else if(t2.is == t.ie-1){
+			aux = t2.is;
+			t2.is = t.ie;
+			t.ie = aux;
+		}
+
+		//System.out.println("Nous ie "+ t.ie +" i " + t2.ie );
+
 		return true;
 	}
 
@@ -321,16 +362,19 @@ public class probTreballadorsCiutat {
 	 */
 
 	void swap_cua( int c, int index1, int index2 ) {
+		//System.out.println("    -----> SWAP");
+		//System.out.println("        cotxe:" + c + " index1:" + index1 + "index2:" + index2 );
+		
 		int aux = cotxes[c].ordre[index1];
 		cotxes[c].ordre[index1] = cotxes[c].ordre[index2];
 		cotxes[c].ordre[index2] = aux;
 
-		aux = treballadors[index1].ie;
-		int aux2 = treballadors[index1].is;
-		treballadors[index1].ie = treballadors[index2].ie;
-		treballadors[index1].is = treballadors[index2].is;	
-		treballadors[index1].ie = aux;
-		treballadors[index1].is = aux2;
+		//aux = treballadors[index1].ie;
+		//int aux2 = treballadors[index1].is;
+		//treballadors[index1].ie = treballadors[index2].ie;
+		//treballadors[index1].is = treballadors[index2].is;	
+		//treballadors[index1].ie = aux;
+		//treballadors[index1].is = aux2;
 	}
 
 	int abs (int x){
