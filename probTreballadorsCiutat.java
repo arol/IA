@@ -511,8 +511,12 @@ public class probTreballadorsCiutat {
 		return distanciaPrimer + distanciaAcompanyants + distanciaUltim;
 	}
 
-	void recalcularDistanciesCotxes(){
-		for (int i=0;i<N-M ;i++) distanciaRecorrida[i] = distanciaRecorregutCotxe(cotxes[i]);
+	public int recalcularDistanciesCotxes(){
+		int total = 0;
+		for (int i=0;i<N-M ;i++) {
+			distanciaRecorrida[i] = distanciaRecorregutCotxe(cotxes[i]);
+			total += distanciaRecorrida[i];
+		}
 	}	
 
 	boolean esSolucioValida(){
