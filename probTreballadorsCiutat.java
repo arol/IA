@@ -125,6 +125,7 @@ public class probTreballadorsCiutat {
 	private static int maxTrabajadoresCoche = 2;
 	private static int maximaDistanciaConductor = 300;
 	
+	private int n_conductors;
 
 	public probTreballadorsCiutat(){
 		N = 10;
@@ -132,11 +133,9 @@ public class probTreballadorsCiutat {
 
 		Date date = new Date();
 		long time = date.getTime();
-
 		Random rnd = new Random(time);
 
-		int n_conductors = 0;
-		int n_cotxes = 0;
+		n_conductors = 0;
 
 		treballadors = new Treballador[N];
 		cotxes = new Cotxe[N-M];
@@ -158,20 +157,22 @@ public class probTreballadorsCiutat {
 			treballadors[i] = t;
 
 		}
-		i = 0;
-		while (n_conductors<N-M){
-			if (i == N) i = 0;
-			if (rnd.nextBoolean()){
-				treballadors[i].conductor = true;
-				Cotxe c = new Cotxe(treballadors[i], n_cotxes);
-				c.idConductor = i;
-				treballadors[i].cotxe = n_cotxes;
-				cotxes[n_cotxes] = c;
-				n_cotxes++;
-				n_conductors++;
-			}
-			i++;
-		}
+
+		//		Els conductors s'han d'assignar a la solucio inicial
+		//i = 0;
+		//while (n_conductors<N-M){
+		//	if (i == N) i = 0;
+		//	if (rnd.nextBoolean()){
+		//		treballadors[i].conductor = true;
+		//		Cotxe c = new Cotxe(treballadors[i], n_cotxes);
+		//		c.idConductor = i;
+		//		treballadors[i].cotxe = n_cotxes;
+		//		cotxes[n_cotxes] = c;
+		//		n_cotxes++;
+		//		n_conductors++;
+		//	}
+		//	i++;
+		//}
 	
 		solucioInicial();
 		recalcularDistanciesCotxes();
@@ -214,18 +215,12 @@ public class probTreballadorsCiutat {
 			System.out.println(distanciaRecorrida[i]);
 		}
 
-		//canviar_de_cotxe(2, 0);
-		System.out.println("Avancem el numero 8!");
-		avansar_entrada(9);
-		avansar_sortida(9);
-		avansar_entrada(9);
-		avansar_sortida(9);
-		avansar_entrada(9);
-		avansar_sortida(9);
-		avansar_entrada(9);
-		avansar_sortida(9);
+		canviar_de_cotxe(5, 0);
+		canviar_de_cotxe(8, 0);
+		no_conduir (4);
 		
-		for(i = 0; i < N-M; i++ ){
+		
+		for(i = 0; i < n_conductors; i++ ){
 			//obj.getClass().isInstance(Statement.class);
 			
 			Cotxe c = cotxes[i];
@@ -242,6 +237,26 @@ public class probTreballadorsCiutat {
 		int j; //Iterador de treballadors
 		int c; //Iterador de cotxes modular a N-M
 		boolean trobat;
+		
+		Date date = new Date();
+		long time = date.getTime();
+		Random rnd = new Random(time);
+
+		Cotxe cotxe;
+		i=0;
+		while (n_conductors<N-M){
+			if (i == N) i = 0;
+			if (rnd.nextBoolean()){
+				treballadors[i].conductor = true;
+				cotxe = new Cotxe(treballadors[i], n_conductors);
+				cotxe.idConductor = i;
+				treballadors[i].cotxe = n_conductors;
+				cotxes[n_conductors] = cotxe;
+				//n_cotxes++; --> si n_cotxes = n_conductors ja no fa falta
+				n_conductors++;
+			}
+			i++;
+		}
 
 		j = 0;
 		c = 0;
@@ -356,6 +371,55 @@ public class probTreballadorsCiutat {
 		return true;
 	}
 
+	public boolean no_conduir ( int idt ){
+		Treballador t = treballadors[idt];
+		if(!t.conductor) return false;
+		if(cotxes[t.cotxe].size != 0) return false;
+
+		//Avansar cues de conductors
+		n_conductors--;
+		int i;
+		for(i=t.cotxe; i < n_conductors; i++){
+			cotxes[i] = cotxes[i+1];
+		}
+		cotxes[i]=null;
+		
+		//Fer que el treballador ja no es mes conductor
+		t.conductor = false;
+
+		//Colocal el treballador en algun cotxe
+		for (i=0; i < n_conductors; i++){
+			if(cotxes[i].size < 2*M)
+				cotxes[i].afegirAcompanyant(idt);
+
+			i = n_conductors; //sortim del bucle
+		}
+		
+		return true;
+	}
+
+	public boolean conduir( int idt ){
+		Treballador t = treballadors[idt];
+		if ( t.conductor ) return false;
+		//if (!t.pot_conduir ) return false;
+
+		n_conductors++;
+		cotxes[n_conductors] = new Cotxe( t, n_conductors);
+		t.cotxe = n_conductors;
+
+		return true;
+	}
+
+	public boolean permutarConduccio( int i ){
+		//Treballador t = treballadors[i];
+		if( !conduir(i) ){
+			if( !no_conduir( i ) ){
+				return false;
+			}
+		}
+
+		return true;
+	}
 
 	/*
 	 Funcions utils que ens faran falta
