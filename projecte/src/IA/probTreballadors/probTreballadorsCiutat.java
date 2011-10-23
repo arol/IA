@@ -567,7 +567,7 @@ public class probTreballadorsCiutat {
                 System.out.println("Es conductor? " + t.conductor);
 		if ( t.conductor ) return false;
 		//if (!t.pot_conduir ) return false;
-                if ( n_conductors >= N-M ) return false; 
+                if ( n_conductors >= N-M-1 ) return false; 
 
 		n_conductors++;
                 cotxes[t.cotxe].eliminarAcompanyant(idt);
