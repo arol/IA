@@ -281,6 +281,22 @@ public class probTreballadorsCiutat {
 		}
 	}
 
+	/* getters */
+	public int getN(){
+		return N;
+	}
+	public int getM(){
+		return M;
+	}
+	public int getNM(){
+		return N-M;
+	}
+	public int getRecorregutCotxe(int i){
+		return distanciaRecorrida[i];	
+	}
+	public int getMaxDistanciaRecorrida(){
+		return maximaDistanciaConductor;
+	}
 	/*
 		Operadors i funcions de transformacio	
 	 */
@@ -517,6 +533,7 @@ public class probTreballadorsCiutat {
 			distanciaRecorrida[i] = distanciaRecorregutCotxe(cotxes[i]);
 			total += distanciaRecorrida[i];
 		}
+		return total;
 	}	
 
 	boolean esSolucioValida(){
@@ -529,6 +546,7 @@ public class probTreballadorsCiutat {
 
 		return true;
 	}
+
 
 }
 
