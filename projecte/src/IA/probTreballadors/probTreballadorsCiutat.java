@@ -145,8 +145,8 @@ public class probTreballadorsCiutat {
 	private int N; //Nombre de treballadors
 	private int M; //Nombre de treballadors conductors.
 
-	private Cotxe [] cotxes;
-	private Treballador [] treballadors;
+	public Cotxe [] cotxes;
+	public Treballador [] treballadors;
 	private int [] distanciaRecorrida;
 
 	private static int maxTrabajadoresCoche = 2;
@@ -264,7 +264,7 @@ public class probTreballadorsCiutat {
 //              N = 10;
 //		M = 7;
 
-               N = o.getN();
+                N = o.getN();
                 M = o.getM();
                 n_conductors = o.getNConductors();
                 
@@ -273,8 +273,41 @@ public class probTreballadorsCiutat {
                 distanciaRecorrida = new int[N-M];
                 //System.arraycopy(o.getTreballadors(), 0, treballadors, 0, N);
                 // o
-                treballadors = o.getTreballadors().clone();
-                cotxes = o.getCotxes().clone();
+                
+                Treballador[] aux = o.getTreballadors();
+                for(int i=0; i < N; i++) {
+                    treballadors[i] = new Treballador(aux[i].origen, aux[i].origen);
+                    treballadors[i].conductor = aux[i].conductor;
+                    
+                    treballadors[i].cotxe = aux[i].cotxe;
+                    treballadors[i].ie = aux[i].ie;
+                    treballadors[i].is = aux[i].is;
+                }
+                Cotxe[] auxc = o.getCotxes();
+                for( int i=0; i < n_conductors; i++){
+//                    Treballador conductor;
+//                    int id;
+//                    int ordre[];
+//                    int size;
+//                    int idConductor;
+                    
+                    
+                    Treballador t = new Treballador(auxc[i].conductor.origen,auxc[i].conductor.desti);
+                    t.conductor     = auxc[i].conductor.conductor;
+                    t.cotxe         = auxc[i].conductor.cotxe;
+                    t.ie            = auxc[i].conductor.ie;
+                    t.is            = auxc[i].conductor.is;
+                    
+                    cotxes[i] = new Cotxe(t);
+                    
+                    cotxes[i].id = auxc[i].id;
+                    cotxes[i].size = auxc[i].size;
+                    cotxes[i].idConductor = auxc[i].idConductor;
+                    
+                    cotxes[i].ordre = auxc[i].ordre.clone();
+                    
+                }
+                
                 distanciaRecorrida = o.getArrayDistancies().clone();
             
 //		Date date = new Date();
@@ -678,9 +711,19 @@ public class probTreballadorsCiutat {
 			System.out.println(distancia_recorregut(t));
 		}
 */
+            
+                System.out.println();
+                System.out.println();
+                System.out.println("Nova solucio!");
+                System.out.println("<<<<<<<<<<<<<<<<<<<<<<<");
+                
 		for(i = 0; i < N-M; i++ ){
 			//obj.getClass().isInstance(Statement.class);
-			
+                    
+                        System.out.println();
+                        System.out.println("COTXE " + i);
+                        System.out.println("==============================");
+                    
 			Cotxe c = cotxes[i];
 			System.out.println("Cotxe numero " + i );
 			System.out.println("Conductor del cotxe" + c.idConductor);
@@ -691,7 +734,16 @@ public class probTreballadorsCiutat {
 
 			System.out.println("Distancia recorreguda cotxe "+ i);
 			System.out.println(distanciaRecorrida[i]);
+                        
+                        System.out.println("==============================");
 		}
+                
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>");
+                System.out.println();
+                System.out.println();
+                
+                
+                
         }
 
 }
