@@ -477,20 +477,30 @@ public class probTreballadorsCiutat {
 
 	public boolean canviar_conductor( int c1, int c2 ){
                 System.out.println( "Canviant conductor entre " + c1 + " i " + c2 );
-		int[] aux;
-		aux = new int[2*M];
+//		int[] aux;
 
-		aux =  cotxes[c1].ordre;
+//		aux = new int[2*M];
+//
+//		aux =  cotxes[c1].ordre;
+//
+//		cotxes[c1].ordre = cotxes[c2].ordre;
+//		cotxes[c2].ordre = aux;
+//
+//		int i;
+//		i = cotxes[c1].size;
+//		cotxes[c1].size = cotxes[c2].size;
+//		cotxes[c2].size = i;
 
-		cotxes[c1].ordre = cotxes[c2].ordre;
-		cotxes[c2].ordre = aux;
-
-		int i;
-		i = cotxes[c1].size;
-		cotxes[c1].size = cotxes[c2].size;
-		cotxes[c2].size = i;
-
-		for( i = 0; i < N; i++ ) { 
+                Treballador t = cotxes[c1].conductor;
+                int idt = cotxes[c1].idConductor;
+                cotxes[c1].conductor = cotxes[c2].conductor;
+                cotxes[c1].idConductor = cotxes[c2].idConductor;
+                
+                cotxes[c2].conductor = t;
+                cotxes[c2].idConductor = idt;
+                
+                int i;
+		for( i = 0; i < N && treballadors[i].conductor; i++ ) { 
 			if ( treballadors[i].cotxe == c1 ){
 				treballadors[i].cotxe = c2;
 			}else if ( treballadors[i].cotxe == c2 ){
