@@ -79,6 +79,19 @@ public class probTreballadorsCiutat {
 			size=0;
 		}
 
+                public void mostraCua()
+                {
+                    System.out.println("Cotxe: "+id);
+                    
+                    System.out.print("Ordre: ");
+                    
+                    for (int i = 0; i < size; i++) {
+                        System.out.print(ordre[i]+" ");
+                    }
+                    
+                    System.out.println(" ");
+                    System.out.println("Size: "+ size);
+                }
 		/*x es l'id del treballador al array de treballadors*/
 		public void afegirAcompanyant(int x){
                         System.out.println("Afegint acompanyant " + x + " al cotxe " + id);
@@ -91,6 +104,7 @@ public class probTreballadorsCiutat {
 			treballadors[x].cotxe = id;
 
 			size+=2;
+                        System.out.println("Afegit el acompanyant" + x + "i ara té espai " + size);
 		}
 
 		public void eliminarAcompanyant(int i){
@@ -100,6 +114,9 @@ public class probTreballadorsCiutat {
 			
 			int count = 0;
 			size-=2;
+                        System.out.println("");
+                        System.out.println("size: "+size);
+                        System.out.println("");
 			for(int j=0; j < size; j++){
 				if(count!=2 && ordre[j] == i){
 					count++;
@@ -115,6 +132,8 @@ public class probTreballadorsCiutat {
 					ordre[j] = ordre[j+2];
 				}
 			}
+                        
+                        System.out.println("Eliminat el acompanyant" + i + "i ara té espai " + size);
 		}
 	}
 
@@ -447,12 +466,18 @@ public class probTreballadorsCiutat {
 		if( cotxe.size >= 2*M ) return false; //cas no possible, pero comprobat
 
 		Cotxe cotxe_actual = cotxes[t.cotxe];
-		cotxe_actual.eliminarAcompanyant(i);
+                
+                cotxe_actual.mostraCua();
+		cotxe_actual.eliminarAcompanyant(i); 
+                cotxe_actual.mostraCua();
+                
+                cotxe.mostraCua();
 		cotxe.afegirAcompanyant(i);
-
+                cotxe.mostraCua();
+                
 		return true;
 	}
-
+        
 	public boolean no_conduir ( int idt ){
 		Treballador t = treballadors[idt];
 		if(!t.conductor) return false;
