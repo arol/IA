@@ -490,7 +490,7 @@ public class probTreballadorsCiutat {
 		cotxes[c1].size = cotxes[c2].size;
 		cotxes[c2].size = i;
 
-		for( i = 0; i < N && treballadors[i].conductor; i++ ) { 
+		for( i = 0; i < N; i++ ) { 
 			if ( treballadors[i].cotxe == c1 ){
 				treballadors[i].cotxe = c2;
 			}else if ( treballadors[i].cotxe == c2 ){
