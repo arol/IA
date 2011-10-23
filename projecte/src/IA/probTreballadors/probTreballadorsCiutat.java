@@ -578,55 +578,62 @@ public class probTreballadorsCiutat {
 		int distanciaUltim = 0;
 
 		/*Depenem de com montem l'estructura dels acompanyants*/
+                
+                if (c.size != 0){
 
-		distanciaPrimer = distancia_dos_punts(c.conductor.origen,treballadors[c.ordre[0]].origen);
-		distanciaUltim = distancia_dos_punts(treballadors[c.ordre[c.size-1]].desti,c.conductor.desti);
+                    distanciaPrimer = distancia_dos_punts(c.conductor.origen,treballadors[c.ordre[0]].origen);
+                    distanciaUltim = distancia_dos_punts(treballadors[c.ordre[c.size-1]].desti,c.conductor.desti);
 
-		System.out.println("distancia primer: " + distanciaPrimer);
-		System.out.println("distancia ultim: " + distanciaUltim);
+                    System.out.println("distancia primer: " + distanciaPrimer);
+                    System.out.println("distancia ultim: " + distanciaUltim);
 
-		int a=0;
-		int b=0;
-		boolean sortida = false;
+                    int a=0;
+                    int b=0;
+                    boolean sortida = false;
 
-		Posicio anterior = treballadors[c.ordre[0]].origen;
+                    Posicio anterior = treballadors[c.ordre[0]].origen;
 
-		for (int i=0;i<c.size;i++){
+                    for (int i=0;i<c.size;i++){
 
-			if (c.ordre[i] == a){
-				a = 0;
-				sortida = true;
-			}
-			else if	(c.ordre[i] == b){
-				b = 0;
-				sortida = true;
-			}
-			else if (a == 0){
-				a = c.ordre[i];
-				sortida = false;
-			}
-			else if (b == 0){
-				b = c.ordre[i];
-				sortida = false;
-			}
+                            if (c.ordre[i] == a){
+                                    a = 0;
+                                    sortida = true;
+                            }
+                            else if	(c.ordre[i] == b){
+                                    b = 0;
+                                    sortida = true;
+                            }
+                            else if (a == 0){
+                                    a = c.ordre[i];
+                                    sortida = false;
+                            }
+                            else if (b == 0){
+                                    b = c.ordre[i];
+                                    sortida = false;
+                            }
 
-			int distanciaActual = distanciaAcompanyants;
+                            int distanciaActual = distanciaAcompanyants;
 
-			Posicio actual;
+                            Posicio actual;
 
-			if (sortida){
-				actual = treballadors[c.ordre[i]].desti;
-			}
-			else{
-				actual = treballadors[c.ordre[i]].origen;
-			}
+                            if (sortida){
+                                    actual = treballadors[c.ordre[i]].desti;
+                            }
+                            else{
+                                    actual = treballadors[c.ordre[i]].origen;
+                            }
 
-			distanciaAcompanyants += distancia_dos_punts(actual,anterior); 
+                            distanciaAcompanyants += distancia_dos_punts(actual,anterior); 
 
-			anterior = actual;
-		}
-		
-		return distanciaPrimer + distanciaAcompanyants + distanciaUltim;
+                            anterior = actual;
+                    }
+
+                    return distanciaPrimer + distanciaAcompanyants + distanciaUltim;
+                }
+                else{
+                    return distancia_dos_punts(c.conductor.origen,c.conductor.desti);
+                }
+                  
 	}
 
 	public int recalcularDistanciesCotxes(){

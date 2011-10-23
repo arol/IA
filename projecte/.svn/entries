@@ -11,8 +11,8 @@ svn://svn.lsi.upc.edu/bejar
 113
 bejar
 has-props
-
-
+has-prop-mods
+svn:special svn:externals svn:needs-lock
 
 
 
@@ -25,49 +25,6 @@ has-props
 
 
 3af31437-1dbb-e08b-97d0-f64b0834b5ac
-
-test
-dir
-
-nbproject
-dir
-
-src
-dir
-
-manifest.mf
-file
-
-
-
-
-2011-02-03T13:55:00.440212Z
-d6fe4af2f67849f1c01635b0ed4c443d
-2010-01-21T13:13:57.630479Z
-22
-bejar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-82
 
 build-before-profiler.xml
 file
@@ -136,4 +93,47 @@ bejar
 
 
 3633
+
+manifest.mf
+file
+
+
+
+
+2011-02-03T13:55:00.440212Z
+d6fe4af2f67849f1c01635b0ed4c443d
+2010-01-21T13:13:57.630479Z
+22
+bejar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+82
+
+nbproject
+dir
+
+src
+dir
+
+test
+dir
 
