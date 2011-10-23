@@ -1,0 +1,52 @@
+10
+
+dir
+117
+svn://svn.lsi.upc.edu/bejar/AIMA/src/aima/search
+svn://svn.lsi.upc.edu/bejar
+
+
+
+2010-01-21T13:13:57.630479Z
+22
+bejar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3af31437-1dbb-e08b-97d0-f64b0834b5ac
+
+nodestore
+dir
+
+informed
+dir
+
+csp
+dir
+
+uninformed
+dir
+
+demos
+dir
+
+eightpuzzle
+dir
+
+framework
+dir
+
+nqueens
+dir
+
