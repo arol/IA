@@ -160,7 +160,7 @@ public class probTreballadorsCiutat {
 
 		Date date = new Date();
 		long time = date.getTime();
-		Random rnd = new Random(time);
+		Random rnd = new Random(System.currentTimeMillis());
 
 		n_conductors = 0;
 
@@ -175,7 +175,7 @@ public class probTreballadorsCiutat {
 			int y_ori = rnd.nextInt(100);
 			Posicio origen = new Posicio (x_ori,y_ori);
 
-                        rnd = new Random(time);
+                        //rnd = new Random(System.currentTimeMillis());
                         
 			int x_desti = rnd.nextInt(100);
 			int y_desti = rnd.nextInt(100);
