@@ -1,4 +1,4 @@
-package probTreballadorsCiutat;
+package IA.probTreballadors;
 import aima.search.framework.GoalTest;
 
 public class probTreballadorsCiutatGoalTest implements GoalTest { 
