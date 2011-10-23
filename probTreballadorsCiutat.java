@@ -297,6 +297,9 @@ public class probTreballadorsCiutat {
 	public int getMaxDistanciaRecorrida(){
 		return maximaDistanciaConductor;
 	}
+	public int getNConductors(){
+		return n_conductors;
+	}
 	/*
 		Operadors i funcions de transformacio	
 	 */
