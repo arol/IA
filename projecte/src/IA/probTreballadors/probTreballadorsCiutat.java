@@ -298,7 +298,7 @@ public class probTreballadorsCiutat {
                 
                 Treballador[] aux = o.getTreballadors();
                 for(int i=0; i < N; i++) {
-                    treballadors[i] = new Treballador(aux[i].origen, aux[i].origen);
+                    treballadors[i] = new Treballador(aux[i].origen, aux[i].desti);
                     treballadors[i].conductor = aux[i].conductor;
                     
                     treballadors[i].cotxe = aux[i].cotxe;
