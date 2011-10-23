@@ -559,8 +559,11 @@ public class probTreballadorsCiutat {
                 if ( n_conductors >= N-M ) return false; 
 
 		n_conductors++;
+                cotxes[t.cotxe].eliminarAcompanyant(idt);
 		cotxes[n_conductors] = new Cotxe( t, n_conductors);
 		t.cotxe = n_conductors;
+                
+                
 
 		return true;
 	}

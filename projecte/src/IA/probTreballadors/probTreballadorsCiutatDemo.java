@@ -44,6 +44,7 @@ public class probTreballadorsCiutatDemo {
 		System.out.print((fi-inici)+" ");
 		System.out.print(i+" ");
 		
+                e.imprimeixSolucio();
 		//Generar la cerca (2 cerques)
 		
 	}
