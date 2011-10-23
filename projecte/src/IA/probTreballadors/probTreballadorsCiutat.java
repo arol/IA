@@ -94,7 +94,7 @@ public class probTreballadorsCiutat {
                 }
 		/*x es l'id del treballador al array de treballadors*/
 		public void afegirAcompanyant(int x){
-                        if(id==1) System.out.println("Afegint acompanyant " + x + " al cotxe " + id);
+                        System.out.println("Afegint acompanyant " + x + " al cotxe " + id);
                         //System.out.println(size + " < " + 2*M + " en el cotxe " + id);
 			ordre[size]=x;
 			ordre[size+1]=x;
@@ -103,9 +103,9 @@ public class probTreballadorsCiutat {
 			treballadors[x].is = size+1;
 			treballadors[x].cotxe = id;
 
-                        if(id==1) System.out.println( "    Actual size is " + size );
+                        System.out.println( "    Actual size is " + size );
 			size+=2;
-                        if(id==1) System.out.println( "    Size after adding is " + size );
+                        System.out.println( "    Size after adding is " + size );
 
 		}
 
@@ -504,6 +504,7 @@ public class probTreballadorsCiutat {
 	public boolean canviar_de_cotxe( int i, int c){
                 System.out.println( "Canviant al treballador " + i + " al cotxe " + c );
 		Treballador t = treballadors[i];
+                System.out.println( "Cotxe actual " + t.cotxe);
 		if( t.cotxe == c ) return false;
                 if( t.conductor ) return false;
 
@@ -675,7 +676,7 @@ public class probTreballadorsCiutat {
 
 	public int recalcularDistanciesCotxes(){
 		int total = 0;
-		for (int i=0;i<N-M ;i++) {
+		for (int i=0;i<n_conductors ;i++) {
 			distanciaRecorrida[i] = distanciaRecorregutCotxe(cotxes[i]);
 			total += distanciaRecorrida[i];
 		}
@@ -684,7 +685,7 @@ public class probTreballadorsCiutat {
 
 	boolean esSolucioValida(){
 		
-		for (int i=0;i<N-M;i++){
+		for (int i=0;i<n_conductors;i++){
 			if (distanciaRecorrida[i] > maximaDistanciaConductor){
 				return false;
 			}
@@ -720,7 +721,7 @@ public class probTreballadorsCiutat {
                 System.out.println("Nova solucio!");
                 System.out.println("<<<<<<<<<<<<<<<<<<<<<<<");
                 
-		for(i = 0; i < N-M; i++ ){
+		for(i = 0; i < n_conductors; i++ ){
 			//obj.getClass().isInstance(Statement.class);
                     
                         System.out.println();

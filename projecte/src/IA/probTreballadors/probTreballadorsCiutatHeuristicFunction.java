@@ -14,15 +14,14 @@ public class probTreballadorsCiutatHeuristicFunction implements HeuristicFunctio
                 //ciutat.imprimeixSolucio();
 		
                 ciutat.recalcularDistanciesCotxes();
-                
-		int N = ciutat.getN();
-		int M = ciutat.getM();
+
+                int n_conductors = ciutat.getNConductors();
 		int maximRecorregut = ciutat.getMaxDistanciaRecorrida();
 
 		h = 0;
                 String x = "Heurisitic amb valors: ";
                 
-		for (int i=0;i<N-M; i++){ 
+		for (int i=0;i<n_conductors; i++){ 
 			int j = ciutat.getRecorregutCotxe(i);
 			if (j > maximRecorregut) return(java.lang.Integer.MAX_VALUE);
 			h += j;
