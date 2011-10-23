@@ -6,7 +6,7 @@ public class probTreballadorsCiutat {
 
 	public class Treballador{
 		boolean conductor;
-		Posicio origen, desti;
+		private Posicio origen, desti;
 		public int cotxe;
 
 		int ie,is;
@@ -175,6 +175,8 @@ public class probTreballadorsCiutat {
 			int y_ori = rnd.nextInt(100);
 			Posicio origen = new Posicio (x_ori,y_ori);
 
+                        rnd = new Random(time);
+                        
 			int x_desti = rnd.nextInt(100);
 			int y_desti = rnd.nextInt(100);
 			Posicio desti = new Posicio (x_desti,y_desti);
@@ -185,6 +187,26 @@ public class probTreballadorsCiutat {
 
 		}
 
+                for (i=0; i<N; i++){ 
+			Treballador t = treballadors[i];
+
+			// Prints dels resultats aleatoris
+			System.out.println("=========Treballador " + i+ " ========");
+			System.out.println("origen amb x: " + t.origen.x + " y: " + t.origen.y);
+			System.out.println("desti amb x: " + t.desti.x + " y: " + t.desti.y);
+
+			if (t.conductor){
+				System.out.println("SOC CONDUCTOR FUCK YEAHH!");
+			}
+
+			System.out.println("======================================");
+
+			System.out.println("===========Distancia camí=============");
+
+			System.out.println(distancia_recorregut(t));
+		}
+
+            
 		//		Els conductors s'han d'assignar a la solucio inicial
 		//i = 0;
 		//while (n_conductors<N-M){
@@ -571,7 +593,7 @@ public class probTreballadorsCiutat {
 
 		n_conductors++;
                 cotxes[t.cotxe].eliminarAcompanyant(idt);
-		cotxes[n_conductors] = new Cotxe( t, n_conductors);
+		cotxes[n_conductors-1] = new Cotxe( t, n_conductors);
 		t.cotxe = n_conductors;
                 
                 
@@ -706,13 +728,13 @@ public class probTreballadorsCiutat {
 
         public void imprimeixSolucio(){
             int i;
-           /* for (i=0; i<N; i++){ 
+            for (i=0; i<N; i++){ 
 			Treballador t = treballadors[i];
 
 			// Prints dels resultats aleatoris
 			System.out.println("=========Treballador " + i+ " ========");
-			System.out.println("origen amb x: " + t.origen.x + " y: " + t.origen.y);
-			System.out.println("desti amb x: " + t.desti.x + " y: " + t.desti.y);
+			System.out.println("origen amb x: " + t.getOrigen().x + " y: " + t.getOrigen().y);
+			System.out.println("desti amb x: " + t.getDesti().x + " y: " + t.getDesti().y);
 
 			if (t.conductor){
 				System.out.println("SOC CONDUCTOR FUCK YEAHH!");
@@ -724,7 +746,7 @@ public class probTreballadorsCiutat {
 
 			System.out.println(distancia_recorregut(t));
 		}
-*/
+
             
                 System.out.println();
                 System.out.println();
