@@ -16,8 +16,6 @@ public class probTreballadorsCiutatHeuristicFunction implements HeuriticFunction
 			return(java.lang.Integer.MAX_VALUE);
 
 		}
-
-
 		return h;
 	}
 
