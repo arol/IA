@@ -81,7 +81,7 @@ public class probTreballadorsCiutat {
 
 		/*x es l'id del treballador al array de treballadors*/
 		public void afegirAcompanyant(int x){
-                        System.out.println("Afegint acompanyant " + x + " al cotxe " + id);
+                        if(id==1) System.out.println("Afegint acompanyant " + x + " al cotxe " + id);
                         //System.out.println(size + " < " + 2*M + " en el cotxe " + id);
 			ordre[size]=x;
 			ordre[size+1]=x;
@@ -90,14 +90,18 @@ public class probTreballadorsCiutat {
 			treballadors[x].is = size+1;
 			treballadors[x].cotxe = id;
 
+                        if(id==1) System.out.println( "    Actual size is " + size );
 			size+=2;
+                        if(id==1) System.out.println( "    Size after adding is " + size );
 		}
 
 		public void eliminarAcompanyant(int i){
-                        System.out.println( "Eliminant acompanyant " + i + " del cotxe " + id );
+                        if(id==1) System.out.println( "Eliminant acompanyant " + i + " del cotxe " + id );
                         
                         Treballador t = treballadors[i];
 			
+                        if(id==1) System.out.println( "    Actual size is " + size );
+                        
 			int count = 0;
 			size-=2;
 			for(int j=0; j < size; j++){
@@ -115,6 +119,8 @@ public class probTreballadorsCiutat {
 					ordre[j] = ordre[j+2];
 				}
 			}
+                        
+                        if(id==1) System.out.println("    Result size after delete is " + size );
 		}
 	}
 
@@ -297,6 +303,8 @@ public class probTreballadorsCiutat {
 		while (n_conductors<N-M){
 			if (i == N) i = 0;
 			if (rnd.nextBoolean()){
+                                System.out.println( "El treballador " + i + " va al cotxe " + n_conductors );
+                                
 				treballadors[i].conductor = true;
 				cotxe = new Cotxe(treballadors[i], n_conductors);
 				cotxe.idConductor = i;
@@ -442,6 +450,7 @@ public class probTreballadorsCiutat {
                 System.out.println( "Canviant al treballador " + i + " al cotxe " + c );
 		Treballador t = treballadors[i];
 		if( t.cotxe == c ) return false;
+                if( t.conductor ) return false;
 
 		Cotxe cotxe = cotxes[c];
 		if( cotxe.size >= 2*M ) return false; //cas no possible, pero comprobat
