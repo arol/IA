@@ -407,7 +407,10 @@ public class probTreballadorsCiutat {
 			aux = t2.is;
 			t2.is = t.is;
 			t.is = aux;
-		}
+		
+                }
+                this.recalcularDistanciesCotxes();
+                
 		return true;
 	}
 
@@ -435,7 +438,7 @@ public class probTreballadorsCiutat {
 		}
 
 		//System.out.println("Nous ie "+ t.ie +" i " + t2.ie );
-
+                
 		return true;
 	}
 
@@ -460,7 +463,8 @@ public class probTreballadorsCiutat {
 			}else if ( treballadors[i].cotxe == c2 ){
 				treballadors[i].cotxe = c1;
 			}
-		}
+                }
+              
 		return true;
 	}
 
@@ -584,9 +588,6 @@ public class probTreballadorsCiutat {
                     distanciaPrimer = distancia_dos_punts(c.conductor.origen,treballadors[c.ordre[0]].origen);
                     distanciaUltim = distancia_dos_punts(treballadors[c.ordre[c.size-1]].desti,c.conductor.desti);
 
-                    System.out.println("distancia primer: " + distanciaPrimer);
-                    System.out.println("distancia ultim: " + distanciaUltim);
-
                     int a=0;
                     int b=0;
                     boolean sortida = false;
@@ -658,10 +659,10 @@ public class probTreballadorsCiutat {
 
         public void imprimeixSolucio(){
             int i;
-            for (i=0; i<N; i++){ 
+           /* for (i=0; i<N; i++){ 
 			Treballador t = treballadors[i];
 
-			/* Prints dels resultats aleatoris */
+			// Prints dels resultats aleatoris
 			System.out.println("=========Treballador " + i+ " ========");
 			System.out.println("origen amb x: " + t.origen.x + " y: " + t.origen.y);
 			System.out.println("desti amb x: " + t.desti.x + " y: " + t.desti.y);
@@ -676,7 +677,7 @@ public class probTreballadorsCiutat {
 
 			System.out.println(distancia_recorregut(t));
 		}
-
+*/
 		for(i = 0; i < N-M; i++ ){
 			//obj.getClass().isInstance(Statement.class);
 			

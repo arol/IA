@@ -49,7 +49,7 @@ public class probTreballadorsCiutatSuccessorFunction implements SuccessorFunctio
 				}
 			}
 		}
-
+                
 		return s;	
 
 	}
