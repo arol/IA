@@ -50,7 +50,7 @@ public class probTreballadorsCiutatDemo {
 		if(numSearch==1)
                     search = new HillClimbingSearch();
                 else
-                    search = new SimulatedAnnealingSearch(2000, 100, 5, 0.001);
+                    search = new SimulatedAnnealingSearch(1000, 50, 5, 0.001);
                 
                 
 		long inici = System.currentTimeMillis();
