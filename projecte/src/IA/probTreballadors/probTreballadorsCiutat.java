@@ -66,8 +66,10 @@ public class probTreballadorsCiutat {
 		int size;
 		int idConductor;
 
+
                 public Cotxe(int id,ArrayList ordre,Posicio origen,Posicio desti,int idconductor,int size){
-                    this.ordre = ordre.clone();
+                    this.ordre = (ArrayList) ordre.clone();
+
                     this.id = id;
                     this.size = size;
                     this.conductor = new Treballador(origen,desti);
@@ -168,7 +170,8 @@ public class probTreballadorsCiutat {
 	public probTreballadorsCiutat(){
 
 		N = 200;
-		M = 0;
+		M = 100;
+
 
 
 		Date date = new Date();
@@ -454,7 +457,7 @@ public class probTreballadorsCiutat {
 		if( t.is == t.ie+1 ) return false;
 		if( t.is == 0 ) return false;
 	
-		Treballador t2 = treballadors[t.cotxe.ordre[t.is-1]];
+		Treballador t2 = treballadors[((Integer)t.cotxe.ordre.get(t.is-1)).intValue()];
 		
                 swap_cua(t.cotxe, t.is, t.is-1);
 
@@ -732,10 +735,10 @@ public class probTreballadorsCiutat {
                 
                 if (c.size != 0){
 
-                    distanciaPrimer = distancia_dos_punts(c.conductor.origen,treballadors[c.ordre[0]].origen);
+                    distanciaPrimer = distancia_dos_punts(c.conductor.origen,treballadors[((Integer)c.ordre.get(0)).intValue()].origen);
                     
                     try{
-                        distanciaUltim = distancia_dos_punts(treballadors[c.ordre[c.size-1]].desti,c.conductor.desti);
+                        distanciaUltim = distancia_dos_punts(treballadors[((Integer)c.ordre.get(c.ordre.size()-1)).intValue()].desti,c.conductor.desti);
                     }catch (NullPointerException e){
                         System.out.println( "NULL POINTER!!! ? DISTANCIA_DOS_PUNTS" );
                         System.out.println(e);
@@ -758,24 +761,24 @@ public class probTreballadorsCiutat {
                     int b=0;
                     boolean sortida = false;
 
-                    Posicio anterior = treballadors[c.ordre[0]].origen;
+                    Posicio anterior = treballadors[((Integer)c.ordre.get(0)).intValue()].origen;
 
                     for (int i=0;i<c.size;i++){
 
-                            if (c.ordre[i] == a){
+                            if (((Integer)c.ordre.get(i)).intValue() == a){
                                     a = 0;
                                     sortida = true;
                             }
-                            else if	(c.ordre[i] == b){
+                            else if	(((Integer)c.ordre.get(i)).intValue() == b){
                                     b = 0;
                                     sortida = true;
                             }
                             else if (a == 0){
-                                    a = c.ordre[i];
+                                    a = ((Integer)c.ordre.get(i)).intValue();
                                     sortida = false;
                             }
                             else if (b == 0){
-                                    b = c.ordre[i];
+                                    b = ((Integer)c.ordre.get(i)).intValue();
                                     sortida = false;
                             }
 
@@ -784,10 +787,10 @@ public class probTreballadorsCiutat {
                             Posicio actual;
 
                             if (sortida){
-                                    actual = treballadors[c.ordre[i]].desti;
+                                    actual = treballadors[((Integer)c.ordre.get(i)).intValue()].desti;
                             }
                             else{
-                                    actual = treballadors[c.ordre[i]].origen;
+                                    actual = treballadors[((Integer)c.ordre.get(i)).intValue()].origen;
                             }
 
                             distanciaAcompanyants += distancia_dos_punts(actual,anterior); 
@@ -861,7 +864,7 @@ public class probTreballadorsCiutat {
 			System.out.println("Cotxe numero " + i );
 			System.out.println("Conductor del cotxe" + c.idConductor);
 			for( int j=0; j<c.size; j++ ){
-				System.out.print(c.ordre[j]+" ");	
+				System.out.print(((Integer)c.ordre.get(j)).intValue() + " ");	
 			}
 			System.out.println("eol");
 
