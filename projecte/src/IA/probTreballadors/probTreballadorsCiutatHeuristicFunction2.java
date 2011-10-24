@@ -16,14 +16,30 @@ public class probTreballadorsCiutatHeuristicFunction2 implements HeuristicFuncti
 		int n_conductors = ciutat.getNConductors();
 
 		h = 0;
-
-		for (int i=0;i<N-M; i++){ 
+                String x = "Heurisitic amb valors: ";
+                int mitja=0;
+                
+		for (int i=0;i<n_conductors; i++){ 
 			int j = ciutat.distanciaRecorregutCotxe(ciutat.cotxes[i]);
-			if (j > maximRecorregut)	return(java.lang.Integer.MAX_VALUE);
-			h += j;
+			//if (j > maximRecorregut)	return(java.lang.Integer.MAX_VALUE);
+                        if (j > maximRecorregut) h += j*j*j;
+			mitja += j;
+                        
+                        x += ", "+ j + " ";
 		}
+                mitja = mitja/n_conductors;
+                mitja = ciutat.abs(300-mitja) * n_conductors;
 
-		return h*n_conductors;
+                                
+                System.out.println("");
+                
+                System.out.println(x);
+                
+                System.out.println("");
+                
+                System.out.println(h*n_conductors);
+                
+		return h+mitja;
 	}
 
 }

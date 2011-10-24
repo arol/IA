@@ -33,6 +33,7 @@ public class probTreballadorsCiutatHeuristicFunction implements HeuristicFunctio
 //                System.out.println("");
 //                
 //                System.out.println(h);
+                
 		return h;
 	}
 
