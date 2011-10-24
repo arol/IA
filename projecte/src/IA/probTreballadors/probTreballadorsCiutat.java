@@ -62,11 +62,11 @@ public class probTreballadorsCiutat {
 	public class Cotxe{
 		Treballador conductor;
 		int id;
-		int ordre[];
+		ArrayList ordre;
 		int size;
 		int idConductor;
 
-                public Cotxe(int id,int[] ordre,Posicio origen,Posicio desti,int idconductor,int size){
+                public Cotxe(int id,ArrayList ordre,Posicio origen,Posicio desti,int idconductor,int size){
                     this.ordre = ordre.clone();
                     this.id = id;
                     this.size = size;
@@ -80,13 +80,13 @@ public class probTreballadorsCiutat {
                 }
 		public Cotxe (Treballador c){
 			conductor = c;
-			ordre = new int[2*M];
+			ordre = new ArrayList();
 			size=0;
 		}
 
 		public Cotxe (Treballador t, int c){
 			conductor = t;
-			ordre = new int[2*M];
+			ordre = new ArrayList();
 			id=c;
 			size=0;
 		}
@@ -98,7 +98,7 @@ public class probTreballadorsCiutat {
                     System.out.print("Ordre: ");
                     
                     for (int i = 0; i < size; i++) {
-                        System.out.print(ordre[i]+" ");
+                        System.out.print(ordre.get(i)+" ");
                     }
                     
                     System.out.println(" ");
@@ -108,8 +108,8 @@ public class probTreballadorsCiutat {
 		public void afegirAcompanyant(int x){
                         System.out.println("Afegint acompanyant " + x + " al cotxe " + id);
                         //System.out.println(size + " < " + 2*M + " en el cotxe " + id);
-			ordre[size]=x;
-			ordre[size+1]=x;
+			ordre.add(x);
+			ordre.add(x);
 
 			treballadors[x].ie = size;
 			treballadors[x].is = size+1;
@@ -133,19 +133,19 @@ public class probTreballadorsCiutat {
                         System.out.println("");
                         System.out.println("size: "+size);
                         System.out.println("");
-			for(int j=0; j < size; j++){
-				if(count!=2 && ordre[j] == i){
+			for(Integer j=0; j < size; j++){
+				if(count!=2 && ordre.get(j) == (Integer)i){
 					count++;
 				}
 				
 				if ( count == 1 ) {
-					ordre[j] = ordre[j+1];
-					if(ordre[j] == i){
+					ordre.add(j,ordre.get(j+1));
+					if(ordre.get(j) == (Integer)i){
 						count++;
-						ordre[j] = ordre[j+2];
+						ordre.add(j,ordre.get(j+2));
 					}
 				}else if ( count == 2 ){
-					ordre[j] = ordre[j+2];
+					ordre.add(j,ordre.get(j+2));
 				}
 			}
                         
@@ -167,8 +167,8 @@ public class probTreballadorsCiutat {
 
 	public probTreballadorsCiutat(){
 
-		N = 20;
-		M = 10;
+		N = 200;
+		M = 0;
 
 
 		Date date = new Date();
@@ -502,7 +502,9 @@ public class probTreballadorsCiutat {
 		//System.out.println("    Avansant numero " + i + " amb ie:" + t.ie + " i is:" + t.is);	
 		if( t.ie == 0 ) return false;
 	
-		Treballador t2 = treballadors[t.cotxe.ordre[t.ie-1]];
+                
+                int index = ((Integer) t.cotxe.ordre.get(t.ie-1)).intValue();
+		Treballador t2 = treballadors[index];
                 
                 
                 
@@ -685,9 +687,9 @@ public class probTreballadorsCiutat {
 		//System.out.println("    -----> SWAP");
 		//System.out.println("        cotxe:" + c + " index1:" + index1 + "index2:" + index2 );
 		
-		int aux = c.ordre[index1];
-		c.ordre[index1] = c.ordre[index2];
-		c.ordre[index2] = aux;
+		Integer aux = (Integer)c.ordre.get(index1);
+		c.ordre.add(index1,c.ordre.get(index2));
+		c.ordre.add(index2,aux);
 
 		//aux = treballadors[index1].ie;
 		//int aux2 = treballadors[index1].is;
@@ -878,4 +880,3 @@ public class probTreballadorsCiutat {
         }
 
 }
-
