@@ -39,7 +39,7 @@ public class probTreballadorsCiutatSuccessorFunction implements SuccessorFunctio
 			}
 					
 		}
-
+/*
 		for(int i=0; i < solucio.getNConductors(); i++){
 			for(int j=0; j < solucio.getNConductors(); j++){
 				if(i!=j){
@@ -49,7 +49,7 @@ public class probTreballadorsCiutatSuccessorFunction implements SuccessorFunctio
 				}
 			}
 		}
-                
+         */       
 		return s;	
 
 	}

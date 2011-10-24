@@ -11,20 +11,20 @@ public class probTreballadorsCiutatHeuristicFunction implements HeuristicFunctio
 
 		probTreballadorsCiutat ciutat = (probTreballadorsCiutat)o;
                 
-                //ciutat.imprimeixSolucio();
+              //  ciutat.imprimeixSolucio();
 		
-                ciutat.recalcularDistanciesCotxes();
+               // ciutat.recalcularDistanciesCotxes();
 
                 int n_conductors = ciutat.getNConductors();
 		int maximRecorregut = ciutat.getMaxDistanciaRecorrida();
-
+                
 		h = 0;
                 String x = "Heurisitic amb valors: ";
                 
 		for (int i=0;i<n_conductors; i++){ 
-			int j = ciutat.getRecorregutCotxe(i);
-			if (j > maximRecorregut) return(java.lang.Integer.MAX_VALUE);
-			h += j;
+                        int j = ciutat.distanciaRecorregutCotxe(ciutat.cotxes[i]);
+			if (j > maximRecorregut) return (java.lang.Integer.MAX_VALUE);
+                        else h += j;
                         x += ", "+ j + " ";
 		}
                 

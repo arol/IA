@@ -147,7 +147,7 @@ public class probTreballadorsCiutat {
 
 	public Cotxe [] cotxes;
 	public Treballador [] treballadors;
-	private int [] distanciaRecorrida;
+	//private int [] distanciaRecorrida;
 
 	private static int maxTrabajadoresCoche = 2;
 	private static int maximaDistanciaConductor = 300;
@@ -155,8 +155,8 @@ public class probTreballadorsCiutat {
 	private int n_conductors;
 
 	public probTreballadorsCiutat(){
-		N = 10;
-		M = 7;
+		N = 200;
+		M = 100;
 
 		Date date = new Date();
 		long time = date.getTime();
@@ -166,7 +166,7 @@ public class probTreballadorsCiutat {
 
 		treballadors = new Treballador[N];
 		cotxes = new Cotxe[N-M];
-		distanciaRecorrida = new int[N-M];
+		//distanciaRecorrida = new int[N-M];
 
 		int i;
 
@@ -292,7 +292,7 @@ public class probTreballadorsCiutat {
                 
                 treballadors = new Treballador[N];
                 cotxes = new Cotxe[N-M];
-                distanciaRecorrida = new int[N-M];
+   //             distanciaRecorrida = new int[N-M];
                 //System.arraycopy(o.getTreballadors(), 0, treballadors, 0, N);
                 // o
                 
@@ -330,7 +330,7 @@ public class probTreballadorsCiutat {
                     
                 }
                 
-                distanciaRecorrida = o.getArrayDistancies().clone();
+    //            distanciaRecorrida = o.getArrayDistancies().clone();
             
 //		Date date = new Date();
 //		long time = date.getTime();
@@ -422,9 +422,9 @@ public class probTreballadorsCiutat {
 	public int getNM(){
 		return N-M;
 	}
-	public int getRecorregutCotxe(int i){
+	/*public int getRecorregutCotxe(int i){
 		return distanciaRecorrida[i];	
-	}
+	}*/
 	public int getMaxDistanciaRecorrida(){
 		return maximaDistanciaConductor;
 	}
@@ -437,9 +437,10 @@ public class probTreballadorsCiutat {
         public Cotxe[] getCotxes(){
             return cotxes;
         }
+        /*
         public int[] getArrayDistancies(){
             return distanciaRecorrida;
-        }
+        }*/
 	/*
 		Operadors i funcions de transformacio	
 	 */
@@ -450,10 +451,12 @@ public class probTreballadorsCiutat {
 		if( t.is == 0 ) return false;
 	
 		Treballador t2 = treballadors[cotxes[t.cotxe].ordre[t.is-1]];
-		swap_cua(t.cotxe, t.is, t.is-1);
+		
+                swap_cua(t.cotxe, t.is, t.is-1);
 
 		//Canviem les seves posicion de sortida
 		int aux;
+                
 		if(t2.ie == t.is-1){
 			aux = t2.ie;
 			t2.ie = t.is;
@@ -464,20 +467,26 @@ public class probTreballadorsCiutat {
 			t.is = aux;
 		
                 }
-                this.recalcularDistanciesCotxes();
+                //this.recalcularDistanciesCotxes();
                 
 		return true;
 	}
 
 	public boolean avansar_entrada( int i ){
                 System.out.println( "Avansant entrada per " + i );
+                
 		//System.out.println("---->");
 		Treballador t = treballadors[i];
-
+                cotxes[t.cotxe].mostraCua();
+                
 		//System.out.println("    Avansant numero " + i + " amb ie:" + t.ie + " i is:" + t.is);	
 		if( t.ie == 0 ) return false;
 	
 		Treballador t2 = treballadors[cotxes[t.cotxe].ordre[t.ie-1]];
+                
+                
+                
+                
 		swap_cua(t.cotxe, t.ie, t.ie-1);
 
 		//Canviem les seves posicions d'entradai
@@ -491,8 +500,9 @@ public class probTreballadorsCiutat {
 			t2.is = t.ie;
 			t.ie = aux;
 		}
-
+                
 		//System.out.println("Nous ie "+ t.ie +" i " + t2.ie );
+                cotxes[t.cotxe].mostraCua();
                 
 		return true;
 	}
@@ -705,7 +715,7 @@ public class probTreballadorsCiutat {
                 }
                   
 	}
-
+/*
 	public int recalcularDistanciesCotxes(){
 		int total = 0;
 		for (int i=0;i<n_conductors ;i++) {
@@ -714,11 +724,11 @@ public class probTreballadorsCiutat {
 		}
 		return total;
 	}	
-
+*/
 	boolean esSolucioValida(){
 		
 		for (int i=0;i<n_conductors;i++){
-			if (distanciaRecorrida[i] > maximaDistanciaConductor){
+			if (distanciaRecorregutCotxe(cotxes[i]) > maximaDistanciaConductor){
 				return false;
 			}
 		}
@@ -769,7 +779,7 @@ public class probTreballadorsCiutat {
 			System.out.println("eol");
 
 			System.out.println("Distancia recorreguda cotxe "+ i);
-			System.out.println(distanciaRecorrida[i]);
+//			System.out.println(distanciaRecorrida[i]);
                         
                         System.out.println("==============================");
 		}

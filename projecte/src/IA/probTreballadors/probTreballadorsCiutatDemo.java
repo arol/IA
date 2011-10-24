@@ -38,7 +38,7 @@ public class probTreballadorsCiutatDemo {
 		
 		System.out.println("Temps d'execucio (en milisegons): "+ (fi-inici));
 		System.out.println("Solucio Final");
-		System.out.println("Temps Total: " + e.recalcularDistanciesCotxes());
+//		System.out.println("Temps Total: " + e.recalcularDistanciesCotxes());
 		System.out.println();
 		System.out.println();
 		System.out.print((fi-inici)+" ");
