@@ -18,24 +18,57 @@ public class probTreballadorsCiutatSuccessorFunction implements SuccessorFunctio
 
 		probTreballadorsCiutat aux ;
 
+                solucio.imprimeixSolucio();
+                
 		for(int i=0; i < solucio.getN(); i++){ //per cada treballador
 			aux = new probTreballadorsCiutat(solucio);
-			if( aux.avansar_entrada(i) )
+			if( aux.avansar_entrada(i) ){
 				s.add( new Successor( "Avansar entrada", aux) );
+                                if(aux.cotxes[aux.getNConductors()-1].idConductor == aux.cotxes[aux.getNConductors()-2].idConductor){
+                                    aux.imprimeixSolucio();
+                                    System.out.println("Es aqui! ? avnasar entrada");
+                                    
+                                    aux.imprimeixSolucio();
+                                    System.exit(0);
+                                }
+                        }
 			
 			aux = new probTreballadorsCiutat(solucio);
-			if( aux.avansar_sortida(i) )
+			if( aux.avansar_sortida(i) ){
 				s.add( new Successor( "Avansar sortida", aux) );
+                                if(aux.cotxes[aux.getNConductors()-1].idConductor == aux.cotxes[aux.getNConductors()-2].idConductor){
+                                    aux.imprimeixSolucio();
+                                    System.out.println("Es aqui! ? avnasar sortida");
+                                    
+                                    aux.imprimeixSolucio();
+                                    System.exit(0);
+                                }
+                        }
 
 			for( int j=0; j < solucio.getNConductors(); j++ ){ //per cada cotxe
 				aux = new probTreballadorsCiutat( solucio );
-				if( aux.canviar_de_cotxe( i, j ) )
+				if( aux.canviar_de_cotxe( i, j ) ){
 					s.add( new Successor( "Canvi de cotxe", aux ));
+                                    if(aux.cotxes[aux.getNConductors()-1].idConductor == aux.cotxes[aux.getNConductors()-2].idConductor){
+                                        aux.imprimeixSolucio();
+                                        System.out.println("Es aqui! ? canvi de cotxe");
+
+                                        aux.imprimeixSolucio();
+                                        System.exit(0);
+                                    }
+                                }
 			}
 
 			aux = new probTreballadorsCiutat( solucio );
 			if( aux.permutarConduccio( i ) ){
 				s.add( new Successor( "Permutar conduccio", aux ));
+                                if(aux.cotxes[aux.getNConductors()-1].idConductor == aux.cotxes[aux.getNConductors()-2].idConductor){
+                                    solucio.imprimeixSolucio();
+//                                    System.out.println("Es aqui! ? permutar conduccio per " + i + " que porta el cotxe "
+//                                            + solucio.cotxes[solucio.treballadors[i].cotxe].id);
+                                    aux.imprimeixSolucio();
+                                    System.exit(0);
+                                }
 			}
 					
 		}
