@@ -110,8 +110,10 @@ public class probTreballadorsCiutat {
 		public void afegirAcompanyant(int x){
                         //System.out.println("Afegint acompanyant " + x + " al cotxe " + id);
                         ////System.out.println(size + " < " + 2*M + " en el cotxe " + id);
-			ordre.add(x);
-			ordre.add(x);
+                        Integer nou = new Integer(x);
+                  
+			ordre.add(nou);
+			ordre.add(nou);
 
 			treballadors[x].ie = size;
 			treballadors[x].is = size+1;
