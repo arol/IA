@@ -130,26 +130,33 @@ public class probTreballadorsCiutat {
 			
                         //System.out.println( "    Actual size is " + size );
                         
-			int count = 0;
+//			int count = 0;
 			size-=2;
+                        
+                        for (int j=0; j < this.ordre.size(); j++){
+                            if(((Integer)this.ordre.get(j)).equals(Integer.valueOf(i)));
+                                this.ordre.remove(j);
+                        }
+                        
                         //System.out.println("");
                         //System.out.println("size: "+size);
                         //System.out.println("");
-			for(Integer j=0; j < size; j++){
-				if(count!=2 && ordre.get(j) == (Integer)i){
-					count++;
-				}
-				
-				if ( count == 1 ) {
-					ordre.add(j,ordre.get(j+1));
-					if(ordre.get(j) == (Integer)i){
-						count++;
-						ordre.add(j,ordre.get(j+2));
-					}
-				}else if ( count == 2 ){
-					ordre.add(j,ordre.get(j+2));
-				}
-			}
+			
+//                        for(Integer j=0; j < size; j++){
+//				if(count!=2 && ordre.get(j) == (Integer)i){
+//					count++;
+//				}
+//				
+//				if ( count == 1 ) {
+//					ordre.add(j,ordre.get(j+1));
+//					if(ordre.get(j) == (Integer)i){
+//						count++;
+//						ordre.add(j,ordre.get(j+2));
+//					}
+//				}else if ( count == 2 ){
+//					ordre.add(j,ordre.get(j+2));
+//				}
+//			}
                         
                         //if(id==1) System.out.println("    Result size after delete is " + size );
 
