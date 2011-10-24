@@ -68,10 +68,9 @@ public class probTreballadorsCiutatDemo {
         
 		probTreballadorsCiutat e = (probTreballadorsCiutat) s.getGoalState();
 		
-		//e.imprimeixSolucio();
-		System.out.println("Accions realitzades: ");
-		
                 e.imprimeixSolucio();
+                
+                System.out.println("Accions realitzades: ");
                 
                 int i;
 		for (i = 0; i < agent.getActions().size(); i++) {
@@ -81,14 +80,12 @@ public class probTreballadorsCiutatDemo {
                 
 		System.out.println("Temps d'execucio (en milisegons): "+ (fi-inici));
 		System.out.println("Solucio Final");
-//		System.out.println("Temps Total: " + e.recalcularDistanciesCotxes());
 		System.out.println();
 		System.out.println();
 		System.out.print((fi-inici)+" ");
 		System.out.print(i+" ");
 		
                 
-		//Generar la cerca (2 cerques)
 		
 	}
 	
