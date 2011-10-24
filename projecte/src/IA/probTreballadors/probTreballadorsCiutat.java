@@ -440,7 +440,62 @@ public class probTreballadorsCiutat {
 
 					trobat = true; //Sortim del while
 					i++; //Ja hem col.locat un mes
-					c = (c+1) % (N-M+1); //fem un bucle a modul N-M repartint al maxim els acompanyants
+					c = (c+1) % (N-M); //fem un bucle a modul N-M repartint al maxim els acompanyants
+				}
+				j++;
+			}
+		}
+                //this.imprimeixSolucio();
+                //System.exit(0);
+	}
+        
+        public void solucioInicial2(){
+		int i; //Acompanyants colocats
+		int j; //Iterador de treballadors
+		int c; //Iterador de cotxes modular a N-M
+		boolean trobat;
+		
+		Date date = new Date();
+		long time = date.getTime();
+		Random rnd = new Random(time);
+
+		Cotxe cotxe;
+		i=0;
+                n_conductors=0;
+		while (n_conductors < N-M){
+			if (i == N) i = 0;
+			if (rnd.nextBoolean() && !treballadors[i].conductor){
+//                                //System.out.println( "El treballador " + i + " condueix al cotxe " + n_conductors );
+                                
+				treballadors[i].conductor = true;
+				cotxe = new Cotxe(treballadors[i], n_conductors);
+				cotxe.idConductor = i;
+				
+				cotxes[n_conductors] = cotxe;
+                                treballadors[i].cotxe = cotxe;
+				//n_cotxes++; --> si n_cotxes = n_conductors ja no fa falta
+				n_conductors++;
+			}
+			i++;
+		}
+
+		j = 0;
+		c = 0;
+		for( i = 0; i < M; ){
+			trobat = false;
+			while ( !trobat ){
+				//busquem un acompanyant
+				
+//				//System.out.println("Mirant treballador " + j);
+
+				if(!treballadors[j].conductor){
+//					//System.out.println("No es conductor");
+//					//System.out.println("Va al conductor " + c);
+					cotxes[0].afegirAcompanyant(treballadors[j]);
+
+					trobat = true; //Sortim del while
+					i++; //Ja hem col.locat un mes
+					c = (c+1) % (N-M); //fem un bucle a modul N-M repartint al maxim els acompanyants
 				}
 				j++;
 			}
@@ -611,7 +666,21 @@ public class probTreballadorsCiutat {
 		//Treballador t = treballadors[idt];
 		if(!t.conductor) return false;
 
-		if(t.cotxe.size != 0) return false;
+		//if(t.cotxe.size != 0) return false;
+                
+                boolean trobat;
+                while(!t.cotxe.ordre.isEmpty()){
+                    trobat = false;
+                    for(int i=0; i < n_conductors; i++){
+                        if( i != t.cotxe.id){
+                            t.cotxe.eliminarAcompanyant(t);
+                            cotxes[i].afegirAcompanyant((Treballador)t.cotxe.ordre.get(0));
+                            break;
+                        }
+                    }
+                        
+                    if(!trobat) return false;
+                }
 
 		//Avansar cues de conductors
 		n_conductors--;

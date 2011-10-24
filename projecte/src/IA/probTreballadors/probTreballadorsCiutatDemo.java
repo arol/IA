@@ -13,7 +13,7 @@ public class probTreballadorsCiutatDemo {
 		Scanner scan = new Scanner(System.in);
 		
                 int numTreballadors, numNoConductors;
-                int numH, numSearch;
+                int numS, numH, numSearch;
                 
                 //Definir M i N
                 System.out.println("Quants treballadors hi ha?");
@@ -22,7 +22,8 @@ public class probTreballadorsCiutatDemo {
                 numNoConductors = scan.nextInt();
                 
                 //Triar solucio inicial
-                
+                System.out.println("Quin solucio inicial es vol fer servir? (1/2)");
+                numS = scan.nextInt();
                 
                 //Triar heuristic
                 System.out.println("Quin heuristic es vol fer servir? (1/2)");
@@ -37,7 +38,10 @@ public class probTreballadorsCiutatDemo {
 		probTreballadorsCiutat estat = new probTreballadorsCiutat(numTreballadors, numNoConductors );
                 
 		//Generar la solucio inicial
-		estat.solucioInicial();
+                if(numS == 1)
+                    estat.solucioInicial();
+                else
+                    estat.solucioInicial2();
 		
 		//Generar el problema segons el criteri de cerca (crear dos problemes)
                 Problem problem;
@@ -64,14 +68,17 @@ public class probTreballadorsCiutatDemo {
         
 		probTreballadorsCiutat e = (probTreballadorsCiutat) s.getGoalState();
 		
-		e.imprimeixSolucio();
+		//e.imprimeixSolucio();
 		System.out.println("Accions realitzades: ");
-		int i;
+		
+                e.imprimeixSolucio();
+                
+                int i;
 		for (i = 0; i < agent.getActions().size(); i++) {
 			String action = (String) agent.getActions().get(i);
 			System.out.println(i+"->" + action);
 		}
-		
+                
 		System.out.println("Temps d'execucio (en milisegons): "+ (fi-inici));
 		System.out.println("Solucio Final");
 //		System.out.println("Temps Total: " + e.recalcularDistanciesCotxes());
@@ -80,7 +87,7 @@ public class probTreballadorsCiutatDemo {
 		System.out.print((fi-inici)+" ");
 		System.out.print(i+" ");
 		
-                e.imprimeixSolucio();
+                
 		//Generar la cerca (2 cerques)
 		
 	}

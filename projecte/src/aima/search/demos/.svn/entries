@@ -4,7 +4,7 @@ dir
 117
 svn://svn.lsi.upc.edu/bejar/AIMA/src/aima/search/demos
 svn://svn.lsi.upc.edu/bejar
-
+delete
 
 
 2010-01-21T13:13:57.630479Z
@@ -26,80 +26,12 @@ bejar
 
 3af31437-1dbb-e08b-97d0-f64b0834b5ac
 
-EightPuzzleDemo.java
-file
-
-
-
-
-2011-02-03T13:54:59.190979Z
-364a9966ae25f45e61809274332392a6
-2010-01-21T13:13:57.630479Z
-22
-bejar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5965
-
-NQueensDemo.java
-file
-
-
-
-
-2011-02-03T13:54:59.190979Z
-6c6b9729376046fedd49e1110893e18a
-2010-01-21T13:13:57.630479Z
-22
-bejar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4823
-
 CSPDemo.java
 file
 
 
 
-
+delete
 2011-02-03T13:54:59.190979Z
 ff55d3dd0130687c5a564983fe240e43
 2010-01-21T13:13:57.630479Z
@@ -128,14 +60,14 @@ bejar
 
 440
 
-SearchDemos.java
+EightPuzzleDemo.java
 file
 
 
 
-
-2011-02-03T13:54:59.191979Z
-5e58f524179d07135a1656b9206f5d56
+delete
+2011-02-03T13:54:59.190979Z
+364a9966ae25f45e61809274332392a6
 2010-01-21T13:13:57.630479Z
 22
 bejar
@@ -160,14 +92,14 @@ bejar
 
 
 
-235
+5965
 
 GenerateRandomEightPuzzleBoard.java
 file
 
 
 
-
+delete
 2011-02-03T13:54:59.191979Z
 ce84c92b1811a8af4a030114eabdbc81
 2010-01-21T13:13:57.630479Z
@@ -195,4 +127,72 @@ bejar
 
 
 710
+
+NQueensDemo.java
+file
+
+
+
+delete
+2011-02-03T13:54:59.190979Z
+6c6b9729376046fedd49e1110893e18a
+2010-01-21T13:13:57.630479Z
+22
+bejar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4823
+
+SearchDemos.java
+file
+
+
+
+delete
+2011-02-03T13:54:59.191979Z
+5e58f524179d07135a1656b9206f5d56
+2010-01-21T13:13:57.630479Z
+22
+bejar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+235
 

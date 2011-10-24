@@ -4,7 +4,7 @@ dir
 117
 svn://svn.lsi.upc.edu/bejar/AIMA/src/aima/search/eightpuzzle
 svn://svn.lsi.upc.edu/bejar
-
+delete
 
 
 2010-01-21T13:13:57.630479Z
@@ -26,14 +26,14 @@ bejar
 
 3af31437-1dbb-e08b-97d0-f64b0834b5ac
 
-EightPuzzleJFrame.java
+EightPuzzleBoard.java
 file
 
 
 
-
-2011-02-03T13:54:59.209983Z
-553803162d2ea03f3588f6a38efec580
+delete
+2011-02-03T13:54:59.210983Z
+ed8806b9ba16c07878bd9118283d36d7
 2010-01-21T13:13:57.630479Z
 22
 bejar
@@ -58,14 +58,48 @@ bejar
 
 
 
-9890
+5318
+
+EightPuzzleGoalTest.java
+file
+
+
+
+delete
+2011-02-03T13:54:59.210983Z
+123075494150c5b6b82420855d85b31f
+2010-01-21T13:13:57.630479Z
+22
+bejar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+445
 
 EightPuzzleJFrame.form
 file
 
 
 
-
+delete
 2011-02-03T13:54:59.209983Z
 bfc9a6840cb48037da46f1733f25abb5
 2010-01-21T13:13:57.630479Z
@@ -94,12 +128,80 @@ bejar
 
 4538
 
+EightPuzzleJFrame.java
+file
+
+
+
+delete
+2011-02-03T13:54:59.209983Z
+553803162d2ea03f3588f6a38efec580
+2010-01-21T13:13:57.630479Z
+22
+bejar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9890
+
+EightPuzzleSuccessorFunction.java
+file
+
+
+
+delete
+2011-02-03T13:54:59.210983Z
+057018fb18ea5b79d0156c2504430181
+2010-01-21T13:13:57.630479Z
+22
+bejar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1478
+
 ManhattanHeuristicFunction.java
 file
 
 
 
-
+delete
 2011-02-03T13:54:59.210983Z
 d71b671edb7ef51036a44357e4baa7b4
 2010-01-21T13:13:57.630479Z
@@ -133,7 +235,7 @@ file
 
 
 
-
+delete
 2011-02-03T13:54:59.210983Z
 4bbe163e9a0dc423ce45d76d0e6d1cf3
 2010-01-21T13:13:57.630479Z
@@ -161,106 +263,4 @@ bejar
 
 
 1472
-
-EightPuzzleBoard.java
-file
-
-
-
-
-2011-02-03T13:54:59.210983Z
-ed8806b9ba16c07878bd9118283d36d7
-2010-01-21T13:13:57.630479Z
-22
-bejar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5318
-
-EightPuzzleSuccessorFunction.java
-file
-
-
-
-
-2011-02-03T13:54:59.210983Z
-057018fb18ea5b79d0156c2504430181
-2010-01-21T13:13:57.630479Z
-22
-bejar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1478
-
-EightPuzzleGoalTest.java
-file
-
-
-
-
-2011-02-03T13:54:59.210983Z
-123075494150c5b6b82420855d85b31f
-2010-01-21T13:13:57.630479Z
-22
-bejar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-445
 

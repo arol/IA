@@ -26,27 +26,35 @@ bejar
 
 3af31437-1dbb-e08b-97d0-f64b0834b5ac
 
-nodestore
+csp
+dir
+
+demos
+dir
+
+
+
+delete
+
+eightpuzzle
+dir
+
+
+
+delete
+
+framework
 dir
 
 informed
 dir
 
-csp
-dir
-
-uninformed
-dir
-
-demos
-dir
-
-eightpuzzle
-dir
-
-framework
+nodestore
 dir
 
 nqueens
+dir
+
+uninformed
 dir
 

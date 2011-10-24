@@ -21,18 +21,18 @@ public class probTreballadorsCiutatHeuristicFunction implements HeuristicFunctio
                 
 		for (int i=0;i<n_conductors; i++){ 
                         int j = ciutat.distanciaRecorregutCotxe(ciutat.cotxes[i]);
-			if (j > maximRecorregut) return (java.lang.Integer.MAX_VALUE);
+			if (j > maximRecorregut) h += j*j;
                         else h += j;
                         x += ", "+ j + " ";
 		}
                 
-                //System.out.println("");
-                
-                //System.out.println(x);
-                
-                //System.out.println("");
-                
-                //System.out.println(h);
+//                System.out.println("");
+//                
+//                System.out.println(x);
+//                
+//                System.out.println("");
+//                
+//                System.out.println(h);
 		return h;
 	}
 
