@@ -14,6 +14,15 @@ public class probTreballadorsCiutatDemo {
 		//Generar l'estat
 		probTreballadorsCiutat estat = new probTreballadorsCiutat( );
 		
+                
+                //Triar solucio inicial
+                //Triar heuristic
+                
+                
+                
+                
+                
+                
 		//Generar la solucio inicial
 		estat.solucioInicial();
 		

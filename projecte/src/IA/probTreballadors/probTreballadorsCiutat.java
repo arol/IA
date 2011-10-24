@@ -328,7 +328,18 @@ public class probTreballadorsCiutat {
                 for(int i=0; i < N; i++) {
                     treballadors[i] = new Treballador(aux[i].origen, aux[i].desti);
                     treballadors[i].conductor = aux[i].conductor;  
-                    treballadors[i].cotxe = cotxes[aux[i].cotxe.getId()];
+                    
+                    try{
+                        treballadors[i].cotxe = cotxes[aux[i].cotxe.getId()];
+                    }catch( NullPointerException e ){
+                        System.out.println( "LAPUTA!!! " );
+                        System.out.println( "Treballador: " + i);
+                        System.out.println( "Cotxe: " + aux[i].cotxe);
+                        
+                        System.exit(0);
+                    }
+                    
+                    
                     treballadors[i].ie = aux[i].ie;         
                     treballadors[i].is = aux[i].is;
                 }
@@ -377,10 +388,10 @@ public class probTreballadorsCiutat {
 		Cotxe cotxe;
 		i=0;
                 n_conductors=0;
-		while (n_conductors<N-M){
+		while (n_conductors < N-M){
 			if (i == N) i = 0;
 			if (rnd.nextBoolean()){
-                                System.out.println( "El treballador " + i + " va al cotxe " + n_conductors );
+                                System.out.println( "El treballador " + i + " condueix al cotxe " + n_conductors );
                                 
 				treballadors[i].conductor = true;
 				cotxe = new Cotxe(treballadors[i], n_conductors);
@@ -410,7 +421,7 @@ public class probTreballadorsCiutat {
 
 					trobat = true; //Sortim del while
 					i++; //Ja hem col.locat un mes
-					c = (c+1) % (N-M); //fem un bucle a modul N-M repartint al maxim els acompanyants
+					c = (c+1) % (N-M+1); //fem un bucle a modul N-M repartint al maxim els acompanyants
 				}
 				j++;
 			}
