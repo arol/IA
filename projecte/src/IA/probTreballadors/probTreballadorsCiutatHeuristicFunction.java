@@ -26,13 +26,13 @@ public class probTreballadorsCiutatHeuristicFunction implements HeuristicFunctio
                         x += ", "+ j + " ";
 		}
                 
-                System.out.println("");
+                //System.out.println("");
                 
-                System.out.println(x);
+                //System.out.println(x);
                 
-                System.out.println("");
+                //System.out.println("");
                 
-                System.out.println(h);
+                //System.out.println(h);
 		return h;
 	}
 

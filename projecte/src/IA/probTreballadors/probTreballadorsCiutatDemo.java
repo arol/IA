@@ -57,7 +57,11 @@ public class probTreballadorsCiutatDemo {
 		SearchAgent agent = new SearchAgent( problem, search );
 		long fi = System.currentTimeMillis();
 		
-		HillClimbingSearch s = (HillClimbingSearch) search;
+                if (numSearch == 1){
+                    HillClimbingSearch s = (HillClimbingSearch) search;
+                }
+                Search s = search;
+        
 		probTreballadorsCiutat e = (probTreballadorsCiutat) s.getGoalState();
 		
 		e.imprimeixSolucio();

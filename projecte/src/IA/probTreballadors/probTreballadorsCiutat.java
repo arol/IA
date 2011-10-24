@@ -95,21 +95,21 @@ public class probTreballadorsCiutat {
 
                 public void mostraCua()
                 {
-                    System.out.println("Cotxe: "+id);
+                    //System.out.println("Cotxe: "+id);
                     
-                    System.out.print("Ordre: ");
+                    //System.out.print("Ordre: ");
                     
                     for (int i = 0; i < size; i++) {
-                        System.out.print(ordre.get(i)+" ");
+                        //System.out.print(ordre.get(i)+" ");
                     }
                     
-                    System.out.println(" ");
-                    System.out.println("Size: "+ size);
+                    //System.out.println(" ");
+                    //System.out.println("Size: "+ size);
                 }
 		/*x es l'id del treballador al array de treballadors*/
 		public void afegirAcompanyant(int x){
-                        System.out.println("Afegint acompanyant " + x + " al cotxe " + id);
-                        //System.out.println(size + " < " + 2*M + " en el cotxe " + id);
+                        //System.out.println("Afegint acompanyant " + x + " al cotxe " + id);
+                        ////System.out.println(size + " < " + 2*M + " en el cotxe " + id);
 			ordre.add(x);
 			ordre.add(x);
 
@@ -117,24 +117,24 @@ public class probTreballadorsCiutat {
 			treballadors[x].is = size+1;
 			treballadors[x].cotxe = cotxes[id];
 
-                        System.out.println( "    Actual size is " + size );
+                        //System.out.println( "    Actual size is " + size );
 			size+=2;
-                        System.out.println( "    Size after adding is " + size );
+                        //System.out.println( "    Size after adding is " + size );
 
 		}
 
 		public void eliminarAcompanyant(int i){
-                        System.out.println( "Eliminant acompanyant " + i + " del cotxe " + id );
+                        //System.out.println( "Eliminant acompanyant " + i + " del cotxe " + id );
                         
                         Treballador t = treballadors[i];
 			
-                        System.out.println( "    Actual size is " + size );
+                        //System.out.println( "    Actual size is " + size );
                         
 			int count = 0;
 			size-=2;
-                        System.out.println("");
-                        System.out.println("size: "+size);
-                        System.out.println("");
+                        //System.out.println("");
+                        //System.out.println("size: "+size);
+                        //System.out.println("");
 			for(Integer j=0; j < size; j++){
 				if(count!=2 && ordre.get(j) == (Integer)i){
 					count++;
@@ -151,7 +151,7 @@ public class probTreballadorsCiutat {
 				}
 			}
                         
-                        if(id==1) System.out.println("    Result size after delete is " + size );
+                        //if(id==1) System.out.println("    Result size after delete is " + size );
 
 		}
 	}
@@ -207,19 +207,19 @@ public class probTreballadorsCiutat {
 			Treballador t = treballadors[i];
 
 			// Prints dels resultats aleatoris
-			System.out.println("=========Treballador " + i+ " ========");
-			System.out.println("origen amb x: " + t.origen.x + " y: " + t.origen.y);
-			System.out.println("desti amb x: " + t.desti.x + " y: " + t.desti.y);
+			//System.out.println("=========Treballador " + i+ " ========");
+			//System.out.println("origen amb x: " + t.origen.x + " y: " + t.origen.y);
+			//System.out.println("desti amb x: " + t.desti.x + " y: " + t.desti.y);
 
 			if (t.conductor){
-				System.out.println("SOC CONDUCTOR FUCK YEAHH!");
+				//System.out.println("SOC CONDUCTOR FUCK YEAHH!");
 			}
 
-			System.out.println("======================================");
+			//System.out.println("======================================");
 
-			System.out.println("===========Distancia camí=============");
+			//System.out.println("===========Distancia camí=============");
 
-			System.out.println(distancia_recorregut(t));
+			//System.out.println(distancia_recorregut(t));
 		}
 
             
@@ -243,42 +243,42 @@ public class probTreballadorsCiutat {
 //		solucioInicial();
 //		recalcularDistanciesCotxes();
 //
-//		if (esSolucioValida()) System.out.println("Es solucio valida");
-//		else System.out.println("No es solucio valida");
+//		if (esSolucioValida()) //System.out.println("Es solucio valida");
+//		else //System.out.println("No es solucio valida");
 //
 //
 //		for (i=0; i<N; i++){ 
 //			Treballador t = treballadors[i];
 //
 //			/* Prints dels resultats aleatoris */
-//			System.out.println("=========Treballador " + i+ " ========");
-//			System.out.println("origen amb x: " + t.origen.x + " y: " + t.origen.y);
-//			System.out.println("desti amb x: " + t.desti.x + " y: " + t.desti.y);
+//			//System.out.println("=========Treballador " + i+ " ========");
+//			//System.out.println("origen amb x: " + t.origen.x + " y: " + t.origen.y);
+//			//System.out.println("desti amb x: " + t.desti.x + " y: " + t.desti.y);
 //
 //			if (t.conductor){
-//				System.out.println("SOC CONDUCTOR FUCK YEAHH!");
+//				//System.out.println("SOC CONDUCTOR FUCK YEAHH!");
 //			}
 //
-//			System.out.println("======================================");
+//			//System.out.println("======================================");
 //
-//			System.out.println("===========Distancia camí=============");
+//			//System.out.println("===========Distancia camí=============");
 //
-//			System.out.println(distancia_recorregut(t));
+//			//System.out.println(distancia_recorregut(t));
 //		}
 //
 //		for(i = 0; i < N-M; i++ ){
 //			//obj.getClass().isInstance(Statement.class);
 //			
 //			Cotxe c = cotxes[i];
-//			System.out.println("Cotxe numero " + i );
-//			System.out.println("Conductor del cotxe" + c.idConductor);
+//			//System.out.println("Cotxe numero " + i );
+//			//System.out.println("Conductor del cotxe" + c.idConductor);
 //			for( int j=0; j<c.size; j++ ){
-//				System.out.print(c.ordre[j]+" ");	
+//				//System.out.print(c.ordre[j]+" ");	
 //			}
-//			System.out.println("eol");
+//			//System.out.println("eol");
 //
-//			System.out.println("Distancia recorreguda cotxe "+ i);
-//			System.out.println(distanciaRecorrida[i]);
+//			//System.out.println("Distancia recorreguda cotxe "+ i);
+//			//System.out.println(distanciaRecorrida[i]);
 //		}
 //
 //		canviar_de_cotxe(5, 0);
@@ -290,11 +290,11 @@ public class probTreballadorsCiutat {
 //			//obj.getClass().isInstance(Statement.class);
 //			
 //			Cotxe c = cotxes[i];
-//			System.out.println("Cotxe numero " + i );
+//			//System.out.println("Cotxe numero " + i );
 //			for( int j=0; j<c.size; j++ ){
-//				System.out.print(c.ordre[j]+" ");	
+//				//System.out.print(c.ordre[j]+" ");	
 //			}
-//			System.out.println("eol");
+//			//System.out.println("eol");
 //		}
 	}
         
@@ -332,9 +332,9 @@ public class probTreballadorsCiutat {
                     try{
                         treballadors[i].cotxe = cotxes[aux[i].cotxe.getId()];
                     }catch( NullPointerException e ){
-                        System.out.println( "LAPUTA!!! " );
-                        System.out.println( "Treballador: " + i);
-                        System.out.println( "Cotxe: " + aux[i].cotxe);
+                        //System.out.println( "LAPUTA!!! " );
+                        //System.out.println( "Treballador: " + i);
+                        //System.out.println( "Cotxe: " + aux[i].cotxe);
                         
                         System.exit(0);
                     }
@@ -391,7 +391,7 @@ public class probTreballadorsCiutat {
 		while (n_conductors < N-M){
 			if (i == N) i = 0;
 			if (rnd.nextBoolean() && !treballadors[i].conductor){
-                                System.out.println( "El treballador " + i + " condueix al cotxe " + n_conductors );
+//                                //System.out.println( "El treballador " + i + " condueix al cotxe " + n_conductors );
                                 
 				treballadors[i].conductor = true;
 				cotxe = new Cotxe(treballadors[i], n_conductors);
@@ -412,11 +412,11 @@ public class probTreballadorsCiutat {
 			while ( !trobat ){
 				//busquem un acompanyant
 				
-				System.out.println("Mirant treballador " + j);
+//				//System.out.println("Mirant treballador " + j);
 
 				if(!treballadors[j].conductor){
-					System.out.println("No es conductor");
-					System.out.println("Va al conductor " + c);
+//					//System.out.println("No es conductor");
+//					//System.out.println("Va al conductor " + c);
 					cotxes[c].afegirAcompanyant(j);
 
 					trobat = true; //Sortim del while
@@ -463,7 +463,7 @@ public class probTreballadorsCiutat {
 		Operadors i funcions de transformacio	
 	 */
 	public boolean avansar_sortida(int i){
-                System.out.println( "Avansant sortida per " + i );                
+                //System.out.println( "Avansant sortida per " + i );                
 		Treballador t = treballadors[i];
 		if( t.is == t.ie+1 ) return false;
 		if( t.is == 0 ) return false;
@@ -491,9 +491,9 @@ public class probTreballadorsCiutat {
 	}
 
 	public boolean avansar_entrada( int i ){
-                System.out.println( "Avansant entrada per " + i );
+                //System.out.println( "Avansant entrada per " + i );
                 
-		//System.out.println("---->");
+		////System.out.println("---->");
 		Treballador t = treballadors[i];
                 
 
@@ -502,18 +502,18 @@ public class probTreballadorsCiutat {
                 try{
                     t.cotxe.mostraCua();
                 }catch ( NullPointerException e ){
-                    System.out.println( "NULL POINTER EXCEPTION!!! ? AVANSAR ENTRADA" );
-                    System.out.println(e);
+                    //System.out.println( "NULL POINTER EXCEPTION!!! ? AVANSAR ENTRADA" );
+                    //System.out.println(e);
                     this.imprimeixSolucio();
-                    System.out.println( "Avansant entrada per " + i );
-                    System.out.println( "Cotxe: " + t.cotxe );
-                    System.out.println( "Conductor? " + t.conductor );
-                    System.out.println( "numero de conductors " + n_conductors );
+                    //System.out.println( "Avansant entrada per " + i );
+                    //System.out.println( "Cotxe: " + t.cotxe );
+                    //System.out.println( "Conductor? " + t.conductor );
+                    //System.out.println( "numero de conductors " + n_conductors );
                     System.exit(0);
                     
                 }
                 
-		//System.out.println("    Avansant numero " + i + " amb ie:" + t.ie + " i is:" + t.is);	
+		////System.out.println("    Avansant numero " + i + " amb ie:" + t.ie + " i is:" + t.is);	
 		if( t.ie == 0 ) return false;
 	
                 
@@ -537,14 +537,14 @@ public class probTreballadorsCiutat {
 			t.ie = aux;
 		}
                 
-		//System.out.println("Nous ie "+ t.ie +" i " + t2.ie );
+		////System.out.println("Nous ie "+ t.ie +" i " + t2.ie );
                 t.cotxe.mostraCua();
                 
 		return true;
 	}
 
 	public boolean canviar_conductor( int c1, int c2 ){
-                System.out.println( "Canviant conductor entre " + c1 + " i " + c2 );
+                //System.out.println( "Canviant conductor entre " + c1 + " i " + c2 );
 //		int[] aux;
 
 //		aux = new int[2*M];
@@ -568,8 +568,8 @@ public class probTreballadorsCiutat {
                 cotxes[c2].idConductor = idt;
                 
 
-                System.out.println( "{{ El conductor del cotxe " + c1 + " es " + cotxes[c1].idConductor);
-                System.out.println( "{{ El conductor del cotxe " + c2 + " es " + cotxes[c2].idConductor);
+                //System.out.println( "{{ El conductor del cotxe " + c1 + " es " + cotxes[c1].idConductor);
+                //System.out.println( "{{ El conductor del cotxe " + c2 + " es " + cotxes[c2].idConductor);
                 
                 
 //                int i;
@@ -589,8 +589,8 @@ public class probTreballadorsCiutat {
 
 	public boolean canviar_de_cotxe( int i, int c){
 		Treballador t = treballadors[i];
-                System.out.println( "Canviant al treballador " + i + " al cotxe " + c +" desde el cotxe "+t.cotxe.getId());
-                System.out.println( "Cotxe actual " + t.cotxe);
+                //System.out.println( "Canviant al treballador " + i + " al cotxe " + c +" desde el cotxe "+t.cotxe.getId());
+                //System.out.println( "Cotxe actual " + t.cotxe);
 		if( t.cotxe.getId() == c ) return false;
                 if( t.conductor ) return false;
 
@@ -604,16 +604,16 @@ public class probTreballadorsCiutat {
                 cotxe_actual.mostraCua();
                 
                 cotxe.mostraCua();
-                System.out.println("i: "+i);
-                System.out.println("cotxe de i: "+t.cotxe.getId());
+                //System.out.println("i: "+i);
+                //System.out.println("cotxe de i: "+t.cotxe.getId());
                 try{
                     cotxe.afegirAcompanyant(i);
-                    System.out.println("i: "+i);
-                    System.out.println("cotxe de i despres del canvi: "+cotxe.getId());
-                    System.out.println("referencia del cotxe de i despres del canvi: "+cotxe);
+                    //System.out.println("i: "+i);
+                    //System.out.println("cotxe de i despres del canvi: "+cotxe.getId());
+                    //System.out.println("referencia del cotxe de i despres del canvi: "+cotxe);
                     cotxe.mostraCua();
                     treballadors[i].cotxe = cotxe;
-                    System.out.println("cotxe al array:"+treballadors[i].cotxe);
+                    //System.out.println("cotxe al array:"+treballadors[i].cotxe);
                 }
                 catch(Exception e){
                     //System.exit(0);
@@ -659,23 +659,23 @@ public class probTreballadorsCiutat {
 	}
 
 	public boolean conduir( int idt ){
-                System.out.println("Fent conduir a " + idt);
+                //System.out.println("Fent conduir a " + idt);
 		Treballador t = treballadors[idt];
-                System.out.println("Es conductor? " + t.conductor);
+                //System.out.println("Es conductor? " + t.conductor);
                 
 		if ( t.conductor ) return false;
 		//if (!t.pot_conduir ) return false;
                 if ( n_conductors >= N-M ) return false; 
 
 
-		System.out.println("nou cotxe: " + n_conductors);
+		//System.out.println("nou cotxe: " + n_conductors);
                 
                 t.cotxe.eliminarAcompanyant(idt);
 		cotxes[n_conductors] = new Cotxe( t, n_conductors);
 //		t.cotxe.id = n_conductors;
 
                 
-                System.out.println( "{{ El conductor del cotxe " + n_conductors + " es " + cotxes[n_conductors].idConductor);
+                //System.out.println( "{{ El conductor del cotxe " + n_conductors + " es " + cotxes[n_conductors].idConductor);
                 
                 n_conductors++;
                 
@@ -698,8 +698,8 @@ public class probTreballadorsCiutat {
 	 */
 
 	void swap_cua( Cotxe c, int index1, int index2 ) {
-		//System.out.println("    -----> SWAP");
-		//System.out.println("        cotxe:" + c + " index1:" + index1 + "index2:" + index2 );
+		////System.out.println("    -----> SWAP");
+		////System.out.println("        cotxe:" + c + " index1:" + index1 + "index2:" + index2 );
 		
 		Integer aux = (Integer)c.ordre.get(index1);
 		c.ordre.add(index1,c.ordre.get(index2));
@@ -733,13 +733,13 @@ public class probTreballadorsCiutat {
 
 		/*Depenem de com montem l'estructura dels acompanyants*/
                 try{
-                    System.out.println(c.size);
+                    //System.out.println(c.size);
                 }catch( NullPointerException e ){
-                    System.out.println( "NULL POINTER!!! ? distanciarecorregut cotxe" );
-                        System.out.println(e);
+                    //System.out.println( "NULL POINTER!!! ? distanciarecorregut cotxe" );
+                        //System.out.println(e);
                         this.imprimeixSolucio();
-                        System.out.println( "Cotxe: " + c.id );
-                        System.out.println( "Size: " + c.size );
+                        //System.out.println( "Cotxe: " + c.id );
+                        //System.out.println( "Size: " + c.size );
                     
                 }
                 
@@ -751,19 +751,19 @@ public class probTreballadorsCiutat {
                     try{
                         distanciaUltim = distancia_dos_punts(treballadors[((Integer)c.ordre.get(c.ordre.size()-1)).intValue()].desti,c.conductor.desti);
                     }catch (NullPointerException e){
-                        System.out.println( "NULL POINTER!!! ? DISTANCIA_DOS_PUNTS" );
-                        System.out.println(e);
+                        //System.out.println( "NULL POINTER!!! ? DISTANCIA_DOS_PUNTS" );
+                        //System.out.println(e);
                         this.imprimeixSolucio();
-                        System.out.println( "Cotxe: " + c.id );
-                        System.out.println( "Size: " + c.size );
+                        //System.out.println( "Cotxe: " + c.id );
+                        //System.out.println( "Size: " + c.size );
                         
                         System.exit(0);
                     }catch (ArrayIndexOutOfBoundsException e){
-                        System.out.println( "ARRAY IOB!!! ? DISTANCIA_DOS_PUNTS" );
-                        System.out.println(e);
+                        //System.out.println( "ARRAY IOB!!! ? DISTANCIA_DOS_PUNTS" );
+                        //System.out.println(e);
                         this.imprimeixSolucio();
-                        System.out.println( "Cotxe: " + c.id );
-                        System.out.println( "Size: " + c.size );
+                        //System.out.println( "Cotxe: " + c.id );
+                        //System.out.println( "Size: " + c.size );
                         
                         System.exit(0);
                     }
@@ -848,12 +848,12 @@ public class probTreballadorsCiutat {
 			System.out.println("desti amb x: " + t.getDesti().x + " y: " + t.getDesti().y);
 
 			if (t.conductor){
-				System.out.println("SOC CONDUCTOR FUCK YEAHH!");
+				//System.out.println("SOC CONDUCTOR FUCK YEAHH!");
 			}
 
 			System.out.println("======================================");
 
-			System.out.println("===========Distancia camí=============");
+			System.out.println("===========Distancia cam�=============");
 
 			System.out.println(distancia_recorregut(t));
 		}
