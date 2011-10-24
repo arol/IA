@@ -11,7 +11,7 @@ public class probTreballadorsCiutatHeuristicFunction implements HeuristicFunctio
 
 		probTreballadorsCiutat ciutat = (probTreballadorsCiutat)o;
                 
-              //  ciutat.imprimeixSolucio();
+                //ciutat.imprimeixSolucio();
 		
                // ciutat.recalcularDistanciesCotxes();
 
