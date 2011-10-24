@@ -64,8 +64,8 @@ public class probTreballadorsCiutatSuccessorFunction implements SuccessorFunctio
 				s.add( new Successor( "Permutar conduccio", aux ));
                                 if(aux.cotxes[aux.getNConductors()-1].idConductor == aux.cotxes[aux.getNConductors()-2].idConductor){
                                     solucio.imprimeixSolucio();
-                                    System.out.println("Es aqui! ? permutar conduccio per " + i + " que porta el cotxe "
-                                            + solucio.cotxes[solucio.treballadors[i].cotxe].id);
+//                                    System.out.println("Es aqui! ? permutar conduccio per " + i + " que porta el cotxe "
+//                                            + solucio.cotxes[solucio.treballadors[i].cotxe].id);
                                     aux.imprimeixSolucio();
                                     System.exit(0);
                                 }
