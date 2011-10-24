@@ -58,7 +58,7 @@ public class probTreballadorsCiutatSuccessorFunction implements SuccessorFunctio
                                     }
                                 }
 			}
-
+/*
 			aux = new probTreballadorsCiutat( solucio );
 			if( aux.permutarConduccio( i ) ){
 				s.add( new Successor( "Permutar conduccio", aux ));
@@ -70,7 +70,7 @@ public class probTreballadorsCiutatSuccessorFunction implements SuccessorFunctio
                                     System.exit(0);
                                 }
 			}
-					
+			*/		
 		}
 /*
 		for(int i=0; i < solucio.getNConductors(); i++){
