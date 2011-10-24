@@ -167,10 +167,10 @@ public class probTreballadorsCiutat {
 	
 	private int n_conductors;
 
-	public probTreballadorsCiutat(){
+	public probTreballadorsCiutat(int numN, int numM){
 
-		N = 200;
-		M = 100;
+		N = numN;
+		M = numM;
 
 
 
@@ -390,7 +390,7 @@ public class probTreballadorsCiutat {
                 n_conductors=0;
 		while (n_conductors < N-M){
 			if (i == N) i = 0;
-			if (rnd.nextBoolean()){
+			if (rnd.nextBoolean() && !treballadors[i].conductor){
                                 System.out.println( "El treballador " + i + " condueix al cotxe " + n_conductors );
                                 
 				treballadors[i].conductor = true;
