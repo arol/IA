@@ -11,8 +11,6 @@ public class probTreballadorsCiutatSuccessorFunction implements SuccessorFunctio
 		probTreballadorsCiutat solucio = (probTreballadorsCiutat) o;
 
 		probTreballadorsCiutat aux ;
-
-                solucio.imprimeixSolucio();
                 
 		for(int i=0; i < solucio.getN(); i++){ //per cada treballador
 			aux = new probTreballadorsCiutat(solucio);
