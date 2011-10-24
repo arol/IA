@@ -11,8 +11,6 @@ public class probTreballadorsCiutatHeuristicFunction implements HeuristicFunctio
 
 		probTreballadorsCiutat ciutat = (probTreballadorsCiutat)o;
 		
-               // ciutat.recalcularDistanciesCotxes();
-
                 int n_conductors = ciutat.getNConductors();
 		int maximRecorregut = ciutat.getMaxDistanciaRecorrida();
                 
@@ -25,14 +23,6 @@ public class probTreballadorsCiutatHeuristicFunction implements HeuristicFunctio
                         else h += j;
                         x += ", "+ j + " ";
 		}
-                
-//                System.out.println("");
-//                
-//                System.out.println(x);
-//                
-//                System.out.println("");
-//                
-//                System.out.println(h);
                 
 		return h;
 	}
